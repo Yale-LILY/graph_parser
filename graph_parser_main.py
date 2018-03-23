@@ -60,9 +60,17 @@ train_parser.add_argument("--lrate", dest="lrate", help="lrate", type=float, def
 train_parser.add_argument("--seed", dest="seed", help="set seed", type= int, default = 0)
 
 ### Scores
-train_parser.add_argument("--punc_test", dest="punc_test", help="punctuation data for testing")
+#train_parser.add_argument("--punc_test", dest="punc_test", help="punctuation data for testing")
 train_parser.add_argument("--content_test", dest="content_test", help="content data for testing")
 train_parser.add_argument("--metrics", nargs='+', dest="metrics", help="content data for testing")
+
+## Output Options
+train_parser.add_argument("--predicted_arcs_file", dest="predicted_arcs_file", help="filename for predicted arcs")
+train_parser.add_argument("--predicted_rels_file", dest="predicted_rels_file", help="filename for predicted rels")
+train_parser.add_argument("--predicted_arcs_file_greedy", dest="predicted_arcs_file_greedy", help="filename for predicted arcs", default='dev_arcs.txt')
+train_parser.add_argument("--predicted_rels_file_greedy", dest="predicted_rels_file_greedy", help="filename for predicted rels", default='dev_rels.txt')
+#train_parser.add_argument("--predicted_stags_file", dest="predicted_stags_file", help="filename for predicted rels") ## for joint
+#train_parser.add_argument("--predicted_pos_file", dest="predicted_pos_file", help="filename for predicted rels") ## for joint
 
 ## test options
 test_parser=subparsers.add_parser('test', help='test parser')
@@ -89,7 +97,7 @@ test_parser.add_argument("--save_probs", dest="save_probs", help="save probabili
 test_parser.add_argument("--get_weight", dest="get_weight", help="save stag weight", action="store_true", default=False)
 
 ### Scores
-test_parser.add_argument("--punc_test", dest="punc_test", help="punctuation data for testing")
+#test_parser.add_argument("--punc_test", dest="punc_test", help="punctuation data for testing")
 test_parser.add_argument("--content_test", dest="content_test", help="content data for testing")
 test_parser.add_argument("--metrics", nargs='+', dest="metrics", help="content data for testing")
 

@@ -101,7 +101,7 @@ def _mergeCycles(cycle,G,RG,g,rg):
 # --------------------------------------------------------------------------------- #
 
 def mst(root,G):
-    """ The Chu-Lui/Edmond's algorithm
+    """ The Chu-Liu/Edmond's algorithm
     arguments:
     root - the root of the MST
     G - the graph in which the MST lies
@@ -160,12 +160,14 @@ def mst(root,G):
             cycles.append(cycle)
 
     rg = _reverse(g)
+    #print(cycles)
     for cycle in cycles:
         if root in cycle:
             continue
         _mergeCycles(cycle, G, RG, g, rg)
 
     return g
+
 
 def get_mst(scores_sent):
     root = 0
@@ -184,12 +186,30 @@ def get_mst(scores_sent):
 # --------------------------------------------------------------------------------- #
 
 if __name__ == "__main__":
-    weights = np.array([[100, 100, 100, 100], [9, 0, 30, 11], [10, 20, 0, 0], [9, 3, 30, 0]])
-    weights = -weights.T
-    arcs = [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 1), (2, 3), (3, 1), (3, 2)]
+#    weights = np.array([[100, 100, 100, 100], [9, 0, 30, 11], [10, 20, 0, 0], [9, 3, 30, 0]])
+#    #weights = np.array([[9, 0, 30, 11], [10, 20, 0, 0], [9, 3, 30, 0]])
+#    weights = -weights.T
+#    arcs = [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 1), (2, 3), (3, 1), (3, 2)]
+#    root = 0
+#    g = _load(arcs,weights)
+#    h = mst(int(root),g)
+#    for s in h:
+#        for t in h[s]:
+#            print "%d-%d" % (s,t)
+    import pickle
+    with open('debugging/4_scores.pkl') as fin:
+        scores_sent = pickle.load(fin)
+    #print(scores_sent.shape)
+    #predictions = get_mst(scores_sent)
+    #print(predictions)
+    print('Dep (row) Head (column)')
+    print(scores_sent)
+    weights = -scores_sent.T
+    arcs = [(i, j) for i in xrange(6) for j in xrange(1, 6) if i!=j]
     root = 0
     g = _load(arcs,weights)
     h = mst(int(root),g)
     for s in h:
         for t in h[s]:
-            print "%d-%d" % (s,t)
+            print('{}->{}'.format(s,t))
+

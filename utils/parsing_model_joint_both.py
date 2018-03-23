@@ -268,7 +268,7 @@ class Parsing_Model_Joint_Both(object):
             predictions_batch['stags'] = predicted_stags
             predictions_batch['jk'] = predicted_jk
             non_padding = weight.astype(bool)
-            non_padding[:, 0] = True ## take the dummy root nodes
+            non_padding[:, 0] = True ## take the dummy root nodes [b, n (including ROOT)]
             predicted_arcs, predicted_rels = predict_arcs_rels(arc_outputs, rel_scores, non_padding)
             predictions_batch['arcs'] = predicted_arcs
             predictions_batch['rels'] = predicted_rels

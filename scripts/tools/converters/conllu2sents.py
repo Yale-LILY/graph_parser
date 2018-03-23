@@ -23,8 +23,9 @@ def conllu2sents(idx, input_dir, output_dir):
                     words.append(words_sent)
                     words_sent = []
                 continue
-            word = tokens[idx]
-            words_sent.append(word)
+            if '#' not in tokens[0]: ## avoid comment lines
+                word = tokens[idx]
+                words_sent.append(word)
 
     #with open('dev.txt', 'wt') as fhand:
     with open(output_dir, 'wt') as fhand:
@@ -40,7 +41,7 @@ if __name__ == '__main__':
         sys.exit('Usage: python tools/conllu2sents.py ...')
     idx = int(sys.argv[1])
     conllu_file = sys.argv[2]
-    output_file = sys.argv[2]
+    output_file = sys.argv[3]
 
 #    conllu2sents(idx, 'data/conllu/en-ud-train_parsey.txt', 'train.txt') 
     conllu2sents(idx, conllu_file, output_file) 

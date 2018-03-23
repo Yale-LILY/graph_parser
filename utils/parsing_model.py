@@ -1,5 +1,4 @@
 from __future__ import print_function
-#import matplotlib
 from data_process_secsplit import Dataset
 from lstm import get_lstm_weights, lstm
 from char_encoding import get_char_weights, encode_char
@@ -7,8 +6,7 @@ from mlp import get_mlp_weights, mlp
 from arc import get_arc_weights, arc_equation
 from rel import get_rel_weights, rel_equation
 from predict import predict_arcs_rels
-#matplotlib.use('Agg')
-#import matplotlib.pyplot as plt
+from converters import output_conllu
 import numpy as np
 import time
 import pickle
@@ -281,10 +279,18 @@ class Parsing_Model(object):
                 self.loader.output_rels(predictions['rels'], self.test_opts.predicted_rels_file)
                 self.loader.output_arcs(predictions['arcs_greedy'], self.test_opts.predicted_arcs_file_greedy)
                 self.loader.output_rels(predictions['rels_greedy'], self.test_opts.predicted_rels_file_greedy)
-            scores = self.loader.get_scores(predictions, self.opts, self.test_opts)
-            if self.test_opts.get_weight:
-                stag_embeddings = session.run(self.stag_embeddings)
-                self.loader.output_weight(stag_embeddings)
+                output_conllu(self.test_opts)
+                if self.test_opts.get_weight:
+                    stag_embeddings = session.run(self.stag_embeddings)
+                    self.loader.output_weight(stag_embeddings)
+            else:
+                self.loader.output_arcs(predictions['arcs'], self.opts.predicted_arcs_file)
+                self.loader.output_rels(predictions['rels'], self.opts.predicted_rels_file)
+                self.loader.output_arcs(predictions['arcs_greedy'], self.opts.predicted_arcs_file_greedy)
+                self.loader.output_rels(predictions['rels_greedy'], self.opts.predicted_rels_file_greedy)
+                output_conllu(self.opts)
+            #scores = self.loader.get_scores(predictions, self.opts, self.test_opts)
             #scores['UAS'] = np.mean(predictions['arcs'][self.loader.punc] == self.loader.gold_arcs[self.loader.punc])
             #scores['UAS_greedy'] = np.mean(predictions['arcs_greedy'][self.loader.punc] == self.loader.gold_arcs[self.loader.punc])
+            scores = {}
             return scores

@@ -23,14 +23,14 @@ class Dataset(object):
             path_to_jk_test = opts.jk_test
             path_to_arc_test = opts.arc_test
             path_to_rel_test = opts.rel_test
-            path_to_punc_test = opts.punc_test
+            #path_to_punc_test = opts.punc_test
         else:
             path_to_text_test = test_opts.text_test
             path_to_tag_test = test_opts.tag_test
             path_to_jk_test = test_opts.jk_test
             path_to_arc_test = test_opts.arc_test
             path_to_rel_test = test_opts.rel_test
-            path_to_punc_test = test_opts.punc_test
+            #path_to_punc_test = test_opts.punc_test
 
         self.inputs_train = {}
         self.inputs_test = {}
@@ -179,15 +179,15 @@ class Dataset(object):
         self.inputs_test['arcs'] = arc_sequences[self.nb_train_samples:]
         ## indexing arc files ends
         self.gold_arcs = np.hstack(arc_sequences[self.nb_train_samples:])
-        if path_to_punc_test is not None:
-            self.punc = arc_sequences[self.nb_train_samples:]
-            with open(path_to_punc_test) as fhand:
-                for sent_idx, line in zip(xrange(len(self.punc)), fhand):
-                    self.punc[sent_idx] = [True for _ in xrange(len(self.punc[sent_idx]))]
-                    for punc_idx in map(int, line.split()):
-                        self.punc[sent_idx][punc_idx-1] = False
-            self.punc = np.hstack(self.punc)#.astype(bool)
-
+#        if path_to_punc_test is not None:
+#            self.punc = arc_sequences[self.nb_train_samples:]
+#            with open(path_to_punc_test) as fhand:
+#                for sent_idx, line in zip(xrange(len(self.punc)), fhand):
+#                    self.punc[sent_idx] = [True for _ in xrange(len(self.punc[sent_idx]))]
+#                    for punc_idx in map(int, line.split()):
+#                        self.punc[sent_idx][punc_idx-1] = False
+#            self.punc = np.hstack(self.punc)#.astype(bool)
+#
         ## padding the train inputs and test inputs
         self.inputs_train = {key: pad_sequences(x, key) for key, x in self.inputs_train.items()}
         self.inputs_train['arcs'] = np.hstack([np.zeros([self.inputs_train['arcs'].shape[0], 1]).astype(int), self.inputs_train['arcs']])
@@ -313,34 +313,34 @@ class Dataset(object):
                     fout.write(' '.join(output_row))
                     fout.write('\n')
 
-    def get_scores(self, predictions, opts, test_opts):
-        if test_opts is None:
-            metrics = opts.metrics ## use train opts
-        else:
-            metrics = test_opts.metrics
-        scores = {}
-        for metric in metrics:
-            if metric == 'NoPunct_UAS':
-                scores[metric] = np.mean(predictions['arcs'][self.punc] == self.gold_arcs[self.punc])
-            elif metric == 'NoPunct_LAS':
-                scores[metric] = np.mean((predictions['arcs'][self.punc] == self.gold_arcs[self.punc])*(predictions['rels'][self.punc] == self.gold_rels[self.punc]))
-            elif metric == 'UAS':
-                scores[metric] = np.mean(predictions['arcs_greedy'] == self.gold_arcs)
-            elif metric == 'LAS':
-                scores[metric] = np.mean((predictions['arcs_greedy'] == self.gold_arcs)*(predictions['rels_greedy'] == self.gold_rels))
-            elif metric == 'CUAS':
-                scores[metric] = np.mean((predictions['arcs_greedy'][self.punc] == self.gold_arcs[self.punc])*self.content)
-            elif metric == 'CLAS':
-                scores[metric] = np.mean(((predictions['arcs_greedy'][self.punc] == self.gold_arcs[self.punc])*(predictions['rels_greedy'][self.punc] == self.gold_rels[self.punc]))*self.content)
-            elif metric == 'Stagging':
-                scores[metric] = np.mean((predictions['stags'] == self.gold_stags))
-            elif metric == 'POS':
-                scores[metric] = np.mean((predictions['jk'] == self.gold_jk))
-            elif metric == 'NoPunct_LAS_Stagging':
-                scores[metric] = np.mean((predictions['arcs_greedy'][self.punc] == self.gold_arcs[self.punc])*(predictions['rels_greedy'][self.punc] == self.gold_rels[self.punc])*(predictions['stags'][self.punc] == self.gold_stags[self.punc]))
-            elif metric == 'NoPunct_LAS_Both':
-                scores[metric] = np.mean((predictions['arcs_greedy'][self.punc] == self.gold_arcs[self.punc])*(predictions['rels_greedy'][self.punc] == self.gold_rels[self.punc])*(predictions['stags'][self.punc] == self.gold_stags[self.punc])*(predictions['jk'][self.punc] == self.gold_jk[self.punc]))
-        return scores
+#    def get_scores(self, predictions, opts, test_opts):
+#        if test_opts is None:
+#            metrics = opts.metrics ## use train opts
+#        else:
+#            metrics = test_opts.metrics
+#        scores = {}
+#        for metric in metrics:
+#            if metric == 'NoPunct_UAS':
+#                scores[metric] = np.mean(predictions['arcs'][self.punc] == self.gold_arcs[self.punc])
+#            elif metric == 'NoPunct_LAS':
+#                scores[metric] = np.mean((predictions['arcs'][self.punc] == self.gold_arcs[self.punc])*(predictions['rels'][self.punc] == self.gold_rels[self.punc]))
+#            elif metric == 'UAS':
+#                scores[metric] = np.mean(predictions['arcs_greedy'] == self.gold_arcs)
+#            elif metric == 'LAS':
+#                scores[metric] = np.mean((predictions['arcs_greedy'] == self.gold_arcs)*(predictions['rels_greedy'] == self.gold_rels))
+#            elif metric == 'CUAS':
+#                scores[metric] = np.mean((predictions['arcs_greedy'][self.punc] == self.gold_arcs[self.punc])*self.content)
+#            elif metric == 'CLAS':
+#                scores[metric] = np.mean(((predictions['arcs_greedy'][self.punc] == self.gold_arcs[self.punc])*(predictions['rels_greedy'][self.punc] == self.gold_rels[self.punc]))*self.content)
+#            elif metric == 'Stagging':
+#                scores[metric] = np.mean((predictions['stags'] == self.gold_stags))
+#            elif metric == 'POS':
+#                scores[metric] = np.mean((predictions['jk'] == self.gold_jk))
+#            elif metric == 'NoPunct_LAS_Stagging':
+#                scores[metric] = np.mean((predictions['arcs_greedy'][self.punc] == self.gold_arcs[self.punc])*(predictions['rels_greedy'][self.punc] == self.gold_rels[self.punc])*(predictions['stags'][self.punc] == self.gold_stags[self.punc]))
+#            elif metric == 'NoPunct_LAS_Both':
+#                scores[metric] = np.mean((predictions['arcs_greedy'][self.punc] == self.gold_arcs[self.punc])*(predictions['rels_greedy'][self.punc] == self.gold_rels[self.punc])*(predictions['stags'][self.punc] == self.gold_stags[self.punc])*(predictions['jk'][self.punc] == self.gold_jk[self.punc]))
+#        return scores
 
 def invert_dict(index_dict): 
     return {j:i for i,j in index_dict.items()}

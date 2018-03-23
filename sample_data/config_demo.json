@@ -2,25 +2,35 @@
 "data":{
         "base_dir": "sample_data",
         "split": {
-                  "train": "conllu/sample.conllustag", 
-                  "dev": "conllu/sample.conllustag",
-                  "test": "conllu/sample.conllustag"
+                  "train": "en-ud-train.conllu", 
+                  "dev": "en-ud-dev.conllu"
                  }
        },
 "parser":{
           "input": {
-                    "word_dim": "100", 
-                    "pos_dim": "100",
-                    "stag_dim": "100"
+                    "embedding_dim": "100", 
+                    "jk_dim": "0",
+                    "stag_dim": "0"
                    },
           "lstm": {
-                   "units": "10", 
-                   "num_layers": "2",
-                   "inputs_dp": "0.8"
+                   "units": "400", 
+                   "num_layers": "4",
+                   "input_p": "0.67",
+                   "hidden_p": "0.67",
+                   "dropout_p": "0.67"
                   },
           "mlp": {
-                  "units": "10", 
-                  "num_layers": "2"
-                 }
+                  "arc_mlp_units": "500", 
+                  "rel_mlp_units": "100", 
+                  "joint_mlp_units": "500", 
+                  "mlp_prob": "0.67", 
+                  "mlp_num_layers": "1"
+                 },
+          "scores": {
+                  "metrics": "NoPunct_LAS NoPunct_UAS Stagging POS"
+                    },
+          "model_options": {
+                  "model": "Parsing_Model"
+                    }
          }
 }

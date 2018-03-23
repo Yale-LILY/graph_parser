@@ -12,6 +12,9 @@ def predict_arcs_rels(arc_outputs, rel_scores, non_padding):
         #non_roots[best_root] = False
         #scores_sent[non_roots, 0] = MIN
         #scores_sent[best_root] = -MIN
+        import pickle
+        with open('debugging/{}_scores.pkl'.format(sent_idx), 'wt') as fout:
+            pickle.dump(scores_sent, fout)
         predicted_arcs_sent = get_mst(scores_sent)
         predicted_arcs.append(predicted_arcs_sent[1:]) ## skip ROOT
         rel_scores_sent = rel_scores[sent_idx][np.arange(predicted_arcs_sent.shape[0]), predicted_arcs_sent, :] ## [n, r]
