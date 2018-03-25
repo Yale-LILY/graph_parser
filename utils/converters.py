@@ -17,13 +17,13 @@ def output_conllu(test_opts):
     if not os.path.isdir(os.path.join(test_opts.base_dir, 'predicted_conllu')):
         os.makedirs(os.path.join(test_opts.base_dir, 'predicted_conllu'))
     with open(os.path.join(test_opts.base_dir, 'predicted_conllu', 'test.conllu'), 'wt') as fout:
-        for sent_idx in xrange(len(sents)):
+        for sent_idx in range(len(sents)):
             sent = sents[sent_idx]
             #stags_sent = stags[sent_idx]
             #pos_sent = pos[sent_idx]
             arcs_sent = arcs[sent_idx]
             rels_sent = rels[sent_idx]
-            for word_idx in xrange(len(sent)):
+            for word_idx in range(len(sent)):
                 line = [str(word_idx+1)]
                 line.append(sent[word_idx])
                 line.append('_')

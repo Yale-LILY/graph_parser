@@ -33,7 +33,7 @@ The biaffine parser takes as input a file in the Conllu+Supertag (conllustag) fo
 ## <a name="train"></a>Train a Parser
 All you need to do is to create a new directory for your data in the conllustag format  and a json file for the model configuration and data information. We provide a [sample json file](sample_data/config_demo.json) for the [sample](sample_data) data directory. You can train a parser on the sample data by the following command:
 ```bash
-python train_graph_parser.py sample_data/config_demo.json
+python3 train_graph_parser.py sample_data/config_demo.json
 ```
 After running this command, you should be getting the following files and directories in sample_data/:
 

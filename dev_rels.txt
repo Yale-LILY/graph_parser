@@ -1,32 +1,32 @@
-nsubj nsubj case case case case punct punct punct
-case punct punct
+nsubj case case case case case punct punct punct
+case case punct
 nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
 nsubj case case case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct
 case case case case punct
 case case case case case punct
 nsubj case case case case case punct punct punct
 nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct
-nsubj case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
 case case case punct
-nsubj case case case nsubj case case nsubj nsubj punct punct punct
-nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
+nsubj nsubj case nsubj nsubj case case nsubj nsubj punct punct punct
+nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct nsubj punct
 nsubj case case case case case case punct punct punct
 punct punct
-nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
+nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct nsubj punct
 nsubj case case case case case case punct punct
 nsubj case case case case case punct punct
-nsubj case nsubj nsubj case case case case punct punct
+nsubj case case case case case case case punct punct
 case case punct
-nsubj case case case case case case nsubj nsubj punct punct punct
+nsubj case case case nsubj case case nsubj nsubj punct punct punct
 nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
 case case case case case case punct
 nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct
 nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj nsubj case case nsubj nsubj nsubj nsubj punct punct punct
+nsubj nsubj nsubj case nsubj nsubj nsubj nsubj punct punct punct
 nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj case nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj case case nsubj case case case case nsubj punct punct punct
+nsubj case case nsubj nsubj nsubj nsubj nsubj punct punct punct
+case case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
+nsubj case case case case case case case nsubj punct punct punct
 nsubj case case punct
 case case punct
 nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct punct
@@ -36,29 +36,29 @@ nsubj case case case case case nsubj nsubj nsubj punct punct punct
 nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
 case case case case case case punct
 nsubj case case case case case case nsubj nsubj nsubj punct punct punct
-nsubj case case case case case punct punct punct
-nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj nsubj nsubj case case case nsubj nsubj punct punct
+nsubj nsubj case case case case punct punct punct
+nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
+nsubj case case case case case nsubj nsubj punct punct
 punct punct
 nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj nsubj nsubj case case case case case punct punct punct
+nsubj case case case case case case case punct punct punct
 case case punct
-nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
+nsubj case case case case case nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
 nsubj nsubj case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct
 punct punct punct
-case punct punct
+case case punct
 case case case case punct
 nsubj nsubj case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
 nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct
 nsubj case case case case case case punct punct
 case case case case case punct
 case case punct
-nsubj case case case nsubj case case nsubj nsubj punct punct punct
+nsubj nsubj case case nsubj nsubj case nsubj nsubj punct punct punct
 nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
 nsubj case case case case case case nsubj nsubj punct punct punct
-nsubj case nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct
-nsubj case case nsubj case case case case case punct punct punct
-nsubj case nsubj case case case case case case case punct punct
+nsubj case case case nsubj nsubj nsubj nsubj nsubj case punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj case case case punct punct punct
+nsubj case case case case case case case case case punct punct
 nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
 nsubj case case case case case case case punct punct
 nsubj case case case case case case punct punct
@@ -67,7 +67,7 @@ nsubj case case case case punct
 nsubj case case case case case punct
 nsubj case case case case case case punct punct punct
 case case case case punct
-case case case punct
+case case case case
 nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct
 punct punct
 nsubj case case case case case punct punct punct
@@ -77,7 +77,7 @@ case case case case case punct punct
 case case case case punct
 nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
 case case case case case punct
-case punct punct
+case case punct
 case case case punct
 nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
 case case case case punct
@@ -85,9 +85,9 @@ nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj
 case case case case case case punct punct
 case case case case case punct
 nsubj case case case case case case punct punct
-nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct
-nsubj case case nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct
+nsubj case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct
+nsubj nsubj case nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
+nsubj nsubj case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct
 case case punct
 nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
 nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
@@ -96,5 +96,5 @@ nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj
 nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct
 case case case punct
 nsubj nsubj case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct
-nsubj nsubj case case nsubj case case case case case punct punct punct
-nsubj case case case nsubj nsubj nsubj nsubj nsubj punct punct punct
+nsubj nsubj nsubj nsubj nsubj case case case case case punct punct punct
+nsubj nsubj case nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct

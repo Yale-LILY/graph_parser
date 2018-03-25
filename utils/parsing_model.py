@@ -1,12 +1,11 @@
-from __future__ import print_function
-from data_process_secsplit import Dataset
-from lstm import get_lstm_weights, lstm
-from char_encoding import get_char_weights, encode_char
-from mlp import get_mlp_weights, mlp
-from arc import get_arc_weights, arc_equation
-from rel import get_rel_weights, rel_equation
-from predict import predict_arcs_rels
-from converters import output_conllu
+from .data_process_secsplit import Dataset
+from .lstm import get_lstm_weights, lstm
+from .char_encoding import get_char_weights, encode_char
+from .mlp import get_mlp_weights, mlp
+from .arc import get_arc_weights, arc_equation
+from .rel import get_rel_weights, rel_equation
+from .predict import predict_arcs_rels
+from .converters import output_conllu
 import numpy as np
 import time
 import pickle
@@ -139,7 +138,7 @@ class Parsing_Model(object):
         rel_roles = ['rel-dep', 'rel-head']
         vectors = {}
         for arc_role in arc_roles:
-            for i in xrange(self.opts.mlp_num_layers):
+            for i in range(self.opts.mlp_num_layers):
                 if i == 0:
                     inputs_dim = self.outputs_dim
                     vector_mlp = inputs
@@ -154,7 +153,7 @@ class Parsing_Model(object):
 #        arc_predictions = get_arcs(arc_output, self.test_opts) # [batch_size, seq_len]
         arc_predictions = tf.argmax(arc_output, 2) # [batch_size, seq_len]
         for rel_role in rel_roles:
-            for i in xrange(self.opts.mlp_num_layers):
+            for i in range(self.opts.mlp_num_layers):
                 if i == 0:
                     inputs_dim = self.outputs_dim
                     vector_mlp = inputs
@@ -174,7 +173,7 @@ class Parsing_Model(object):
         self.test_opts = test_opts
         self.loader = Dataset(opts, test_opts)
         self.batch_size = 100
-	self.get_features()
+        self.get_features()
         self.add_placeholders()
         self.inputs_dim = self.opts.embedding_dim + self.opts.jk_dim + self.opts.stag_dim + self.opts.nb_filters
         self.outputs_dim = (1+self.opts.bi)*self.opts.units
@@ -192,7 +191,7 @@ class Parsing_Model(object):
         ## Let's get those non-padding places so we can reinitialize hidden states after each padding in the backward path
         ### because the backward path starts with zero pads.
         self.weight = tf.cast(tf.not_equal(self.inputs_placeholder_dict['words'], tf.zeros(inputs_shape, tf.int32)), tf.float32) ## [batch_size, seq_len]
-        for i in xrange(self.opts.num_layers):
+        for i in range(self.opts.num_layers):
             forward_outputs_tensor = self.add_dropout(self.add_lstm(inputs_tensor, i, 'Forward'), self.keep_prob) ## [seq_len, batch_size, units]
             if self.opts.bi:
                 backward_outputs_tensor = self.add_dropout(self.add_lstm(tf.reverse(inputs_tensor, [0]), i, 'Backward', True), self.keep_prob) ## [seq_len, batch_size, units]

@@ -196,20 +196,20 @@ class Tokenizer(object):
                             self.word_counts[char] += 1
                         else:
                             self.word_counts[char] = 1
-	else:
-	    for text in texts:
-		self.document_count += 1
-		seq = text if self.char_level or non_split else text_to_word_sequence(text, self.filters, self.lower, self.split)
-		for w in seq:
-		    if w in self.word_counts:
-			self.word_counts[w] += 1
-		    else:
-			self.word_counts[w] = 1
-		for w in set(seq):
-		    if w in self.word_docs:
-			self.word_docs[w] += 1
-		    else:
-			self.word_docs[w] = 1
+        else:
+            for text in texts:
+                self.document_count += 1
+                seq = text if self.char_level or non_split else text_to_word_sequence(text, self.filters, self.lower, self.split)
+                for w in seq:
+                    if w in self.word_counts:
+                        self.word_counts[w] += 1
+                    else:
+                        self.word_counts[w] = 1
+                for w in set(seq):
+                    if w in self.word_docs:
+                        self.word_docs[w] += 1
+                    else:
+                        self.word_docs[w] = 1
 
         wcounts = list(self.word_counts.items())
             

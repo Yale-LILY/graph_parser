@@ -3,20 +3,20 @@ import tensorflow as tf
 def get_lstm_weights(name, inputs_dim, units, batch_size, hidden_prob):
     weights = {}
     with tf.variable_scope(name) as scope:
-	weights['theta_x_i'] = tf.get_variable('theta_x_i', [inputs_dim, units])
-	weights['theta_x_f'] = tf.get_variable('theta_x_f', [inputs_dim, units])
-	weights['theta_x_o'] = tf.get_variable('theta_x_o', [inputs_dim, units] )
-	weights['theta_x_g'] = tf.get_variable('theta_x_g', [inputs_dim, units])
-	weights['theta_h_i'] = tf.get_variable('theta_h_i', [units, units])
-	weights['theta_h_f'] = tf.get_variable('theta_h_f', [units, units])
-	weights['theta_h_o'] = tf.get_variable('theta_h_o', [units, units])
-	weights['theta_h_g'] = tf.get_variable('theta_h_g', [units, units])
-	weights['bias_i'] = tf.get_variable('bias_input', [units])
-	weights['bias_f'] = tf.get_variable('bias_forget', [units], initializer = tf.constant_initializer(1))
-	weights['bias_o'] = tf.get_variable('bias_output', [units])
-	weights['bias_g'] = tf.get_variable('bias_extract', [units])
-	dummy_dp = tf.ones([batch_size, units])
-	weights['dropout'] = [tf.nn.dropout(dummy_dp, hidden_prob) for _ in xrange(4)]
+        weights['theta_x_i'] = tf.get_variable('theta_x_i', [inputs_dim, units])
+        weights['theta_x_f'] = tf.get_variable('theta_x_f', [inputs_dim, units])
+        weights['theta_x_o'] = tf.get_variable('theta_x_o', [inputs_dim, units] )
+        weights['theta_x_g'] = tf.get_variable('theta_x_g', [inputs_dim, units])
+        weights['theta_h_i'] = tf.get_variable('theta_h_i', [units, units])
+        weights['theta_h_f'] = tf.get_variable('theta_h_f', [units, units])
+        weights['theta_h_o'] = tf.get_variable('theta_h_o', [units, units])
+        weights['theta_h_g'] = tf.get_variable('theta_h_g', [units, units])
+        weights['bias_i'] = tf.get_variable('bias_input', [units])
+        weights['bias_f'] = tf.get_variable('bias_forget', [units], initializer = tf.constant_initializer(1))
+        weights['bias_o'] = tf.get_variable('bias_output', [units])
+        weights['bias_g'] = tf.get_variable('bias_extract', [units])
+        dummy_dp = tf.ones([batch_size, units])
+        weights['dropout'] = [tf.nn.dropout(dummy_dp, hidden_prob) for _ in range(4)]
     return weights
 
 def lstm(prev, x, weights, backward=False): # prev = c+h

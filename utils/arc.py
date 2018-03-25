@@ -3,8 +3,8 @@ import tensorflow as tf
 def get_arc_weights(name, units): # no dropout
     weights = {}
     with tf.variable_scope(name) as scope:
-	weights['W-arc'] = tf.get_variable('W-arc', [units, units])
-	weights['b-arc'] = tf.get_variable('b-arc', [units])
+        weights['W-arc'] = tf.get_variable('W-arc', [units, units])
+        weights['b-arc'] = tf.get_variable('b-arc', [units])
     return weights
 
 def arc_equation(H_arc_head, H_arc_dep, weights): 

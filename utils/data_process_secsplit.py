@@ -1,6 +1,7 @@
+#!/usr/bin/env python3
 import numpy as np
-from preprocessing import Tokenizer, pad_sequences, arcs2seq
-from mica.nbest import output_mica_nbest
+from .preprocessing import Tokenizer, pad_sequences, arcs2seq
+from .mica.nbest import output_mica_nbest
 import os 
 import sys
 import pickle
@@ -123,7 +124,7 @@ class Dataset(object):
             jk_sequences = tokenizer.texts_to_sequences(texts)
             self.inputs_train['jk'] = jk_sequences[:self.nb_train_samples]
             self.inputs_test['jk'] = jk_sequences[self.nb_train_samples:]
-            self.gold_jk = np.hstack(map(lambda x: x[1:], jk_sequences[self.nb_train_samples:]))
+            self.gold_jk = np.hstack(list(map(lambda x: x[1:], jk_sequences[self.nb_train_samples:])))
             ## indexing jackknife files ends
         ## indexing stag files
         if (opts.stag_dim > 0) or (opts.model in ['Parsing_Model_Joint', 'Parsing_Model_Shuffle', 'Parsing_Model_Joint_Both']):
@@ -144,7 +145,7 @@ class Dataset(object):
             #print(map(lambda x: self.idx_to_tag[x], tag_sequences[self.nb_train_samples+8]))
             self.inputs_train['stags'] = tag_sequences[:self.nb_train_samples]
             self.inputs_test['stags'] = tag_sequences[self.nb_train_samples:]
-            self.gold_stags = np.hstack(map(lambda x: x[1:], tag_sequences[self.nb_train_samples:]))
+            self.gold_stags = np.hstack(list(map(lambda x: x[1:], tag_sequences[self.nb_train_samples:])))
             ## indexing stag files ends
 
         ## indexing rel files
@@ -164,7 +165,7 @@ class Dataset(object):
         #print(map(lambda x: self.idx_to_tag[x], tag_sequences[self.nb_train_samples+8]))
         self.inputs_train['rels'] = rel_sequences[:self.nb_train_samples]
         self.inputs_test['rels'] = rel_sequences[self.nb_train_samples:]
-        self.gold_rels = np.hstack(map(lambda x: x[1:], rel_sequences[self.nb_train_samples:]))
+        self.gold_rels = np.hstack(list(map(lambda x: x[1:], rel_sequences[self.nb_train_samples:])))
         ## indexing rel files ends
 
         ## indexing arc files
@@ -256,48 +257,48 @@ class Dataset(object):
 
     def output_rels(self, predictions, filename):
         if filename is not None:
-            stags = map(lambda x: self.idx_to_rel[x], predictions)
+            stags = list(map(lambda x: self.idx_to_rel[x], predictions))
             ## For formatting, let's calculate sentence lengths. np.sum is also faster than a for loop
             sents_lengths = np.sum(self.inputs_test['words']!=0, 1) - 1 ## dummy ROOT
             stag_idx = 0
             with open(filename, 'wt') as fwrite:
-                for sent_idx in xrange(len(sents_lengths)):
+                for sent_idx in range(len(sents_lengths)):
                     fwrite.write(' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
                     fwrite.write('\n')
                     stag_idx += sents_lengths[sent_idx]
 
     def output_arcs(self, predictions, filename):
         if filename is not None:
-            stags = map(str, predictions)
+            stags = list(map(str, predictions))
             ## For formatting, let's calculate sentence lengths. np.sum is also faster than a for loop
             sents_lengths = np.sum(self.inputs_test['words']!=0, 1) - 1 ## dummy ROOT
             stag_idx = 0
             with open(filename, 'wt') as fwrite:
-                for sent_idx in xrange(len(sents_lengths)):
+                for sent_idx in range(len(sents_lengths)):
                     fwrite.write(' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
                     fwrite.write('\n')
                     stag_idx += sents_lengths[sent_idx]
 
     def output_stags(self, predictions, filename): ## output stags for joint
-        stags = map(lambda x: self.idx_to_tag[x], predictions)
+        stags = list(map(lambda x: self.idx_to_tag[x], predictions))
         ## For formatting, let's calculate sentence lengths. np.sum is also faster than a for loop
         ## To Do: allow for the CoNLL format
         sents_lengths = np.sum(self.inputs_test['words']!=0, 1) - 1 ## dummy ROOT
         stag_idx = 0
         with open(filename, 'wt') as fwrite:
-            for sent_idx in xrange(len(sents_lengths)):
+            for sent_idx in range(len(sents_lengths)):
                 fwrite.write(' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
                 fwrite.write('\n')
                 stag_idx += sents_lengths[sent_idx]
 
     def output_pos(self, predictions, filename): ## output stags for joint
-        stags = map(lambda x: self.idx_to_jk[x], predictions)
+        stags = list(map(lambda x: self.idx_to_jk[x], predictions))
         ## For formatting, let's calculate sentence lengths. np.sum is also faster than a for loop
         ## To Do: allow for the CoNLL format
         sents_lengths = np.sum(self.inputs_test['words']!=0, 1) - 1 ## dummy ROOT
         stag_idx = 0
         with open(filename, 'wt') as fwrite:
-            for sent_idx in xrange(len(sents_lengths)):
+            for sent_idx in range(len(sents_lengths)):
                 fwrite.write(' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
                 fwrite.write('\n')
                 stag_idx += sents_lengths[sent_idx]
@@ -307,9 +308,9 @@ class Dataset(object):
     def output_weight(self, stag_embeddings):
         filename = 'stag_embeddings.txt'
         with open(filename, 'wt') as fout:
-            for i in xrange(stag_embeddings.shape[0]):
+            for i in range(stag_embeddings.shape[0]):
                 if i in self.idx_to_tag.keys():
-                    output_row = [self.idx_to_tag[i]]+map(str, stag_embeddings[i])
+                    output_row = [self.idx_to_tag[i]]+list(map(str, stag_embeddings[i]))
                     fout.write(' '.join(output_row))
                     fout.write('\n')
 
@@ -348,41 +349,42 @@ def invert_dict(index_dict):
         
 
 if __name__ == '__main__':
-    class Opts(object):
-        def __init__(self):
-            self.jackknife = 1
-            self.embedding_dim = 100
-#            self.text_train = 'sample_data/sents/train.txt'
-#            self.tag_train = 'sample_data/predicted_stag/train.txt'
-#            self.jk_train = 'sample_data/predicted_pos/train.txt'
-#            self.arc_train = 'sample_data/arcs/train.txt'
-#            self.rel_train = 'sample_data/rels/train.txt'
-#            self.text_test = 'sample_data/sents/dev.txt'
-#            self.tag_test = 'sample_data/predicted_stag/dev.txt'
-#            self.jk_test = 'sample_data/predicted_pos/dev.txt'
-#            self.arc_test = 'sample_data/arcs/dev.txt'
-#            self.rel_test = 'sample_data/rels/dev.txt'
-            self.text_train = 'data/tag_wsj/sents/train.txt'
-            self.tag_train = 'data/tag_wsj/predicted_stag/train.txt'
-            self.jk_train = 'data/tag_wsj/predicted_pos/train.txt'
-            self.arc_train = 'data/tag_wsj/arcs/train.txt'
-            self.rel_train = 'data/tag_wsj/rels/train.txt'
-            self.text_test = 'data/tag_wsj/sents/dev.txt'
-            self.tag_test = 'data/tag_wsj/predicted_stag/dev.txt'
-            self.jk_test = 'data/tag_wsj/predicted_pos/dev.txt'
-            self.arc_test = 'data/tag_wsj/arcs/dev.txt'
-            self.rel_test = 'data/tag_wsj/rels/dev.txt'
-            self.punc_test = 'data/tag_wsj/punc/dev.txt'
-            self.word_embeddings_file = 'glovevector/glove.6B.100d.txt'
-            self.chars_dim = 30
-            self.chars_window_size = 30
-            self.nb_filters = 30
-    opts = Opts()
-    data_loader = Dataset(opts)
-    #print(data_loader.inputs_train)
-    print(data_loader.inputs_train['chars'].shape)
-    print(data_loader.inputs_train['words'].shape)
-    data_loader.next_batch(10)
-    print(data_loader.inputs_train_batch['chars'].shape)
-    print(data_loader.inputs_train_batch['words'].shape)
-#
+#    class Opts(object):
+#        def __init__(self):
+#            self.jackknife = 1
+#            self.embedding_dim = 100
+##            self.text_train = 'sample_data/sents/train.txt'
+##            self.tag_train = 'sample_data/predicted_stag/train.txt'
+##            self.jk_train = 'sample_data/predicted_pos/train.txt'
+##            self.arc_train = 'sample_data/arcs/train.txt'
+##            self.rel_train = 'sample_data/rels/train.txt'
+##            self.text_test = 'sample_data/sents/dev.txt'
+##            self.tag_test = 'sample_data/predicted_stag/dev.txt'
+##            self.jk_test = 'sample_data/predicted_pos/dev.txt'
+##            self.arc_test = 'sample_data/arcs/dev.txt'
+##            self.rel_test = 'sample_data/rels/dev.txt'
+#            self.text_train = 'data/tag_wsj/sents/train.txt'
+#            self.tag_train = 'data/tag_wsj/predicted_stag/train.txt'
+#            self.jk_train = 'data/tag_wsj/predicted_pos/train.txt'
+#            self.arc_train = 'data/tag_wsj/arcs/train.txt'
+#            self.rel_train = 'data/tag_wsj/rels/train.txt'
+#            self.text_test = 'data/tag_wsj/sents/dev.txt'
+#            self.tag_test = 'data/tag_wsj/predicted_stag/dev.txt'
+#            self.jk_test = 'data/tag_wsj/predicted_pos/dev.txt'
+#            self.arc_test = 'data/tag_wsj/arcs/dev.txt'
+#            self.rel_test = 'data/tag_wsj/rels/dev.txt'
+#            self.punc_test = 'data/tag_wsj/punc/dev.txt'
+#            self.word_embeddings_file = 'glovevector/glove.6B.100d.txt'
+#            self.chars_dim = 30
+#            self.chars_window_size = 30
+#            self.nb_filters = 30
+#    opts = Opts()
+#    data_loader = Dataset(opts)
+#    #print(data_loader.inputs_train)
+#    print(data_loader.inputs_train['chars'].shape)
+#    print(data_loader.inputs_train['words'].shape)
+#    data_loader.next_batch(10)
+#    print(data_loader.inputs_train_batch['chars'].shape)
+#    print(data_loader.inputs_train_batch['words'].shape)
+##
+    print('test')

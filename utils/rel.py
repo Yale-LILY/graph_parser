@@ -3,9 +3,9 @@ import tensorflow as tf
 def get_rel_weights(name, units, nb_rels): # no dropout
     weights = {}
     with tf.variable_scope(name) as scope:
-	weights['U-rel'] = tf.get_variable('U-rel', [units, nb_rels, units])
-	weights['W-rel'] = tf.get_variable('W-rel', [units, nb_rels])
-	weights['b-rel'] = tf.get_variable('b-rel', [nb_rels])
+        weights['U-rel'] = tf.get_variable('U-rel', [units, nb_rels, units])
+        weights['W-rel'] = tf.get_variable('W-rel', [units, nb_rels])
+        weights['b-rel'] = tf.get_variable('b-rel', [nb_rels])
     return weights
 
 ## rel_equation is fairly complicated, so let's use this shorthand
@@ -65,7 +65,7 @@ def rel_equation(H_rel_head, H_rel_dep, weights, predictions):
 #    # interactions: [n, r]
 #    # predictions: [1]
 #    with tf.device('/cpu:0'):
-#	inputs = tf.nn.embedding_lookup(interactions, predictions) ## [batch_size, seq_len, embedding_dim
+#       inputs = tf.nn.embedding_lookup(interactions, predictions) ## [batch_size, seq_len, embedding_dim
 #    return inputs
 #
 #
