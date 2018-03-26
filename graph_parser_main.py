@@ -67,8 +67,8 @@ train_parser.add_argument("--metrics", nargs='+', dest="metrics", help="content 
 ## Output Options
 train_parser.add_argument("--predicted_arcs_file", dest="predicted_arcs_file", help="filename for predicted arcs")
 train_parser.add_argument("--predicted_rels_file", dest="predicted_rels_file", help="filename for predicted rels")
-train_parser.add_argument("--predicted_arcs_file_greedy", dest="predicted_arcs_file_greedy", help="filename for predicted arcs", default='dev_arcs.txt')
-train_parser.add_argument("--predicted_rels_file_greedy", dest="predicted_rels_file_greedy", help="filename for predicted rels", default='dev_rels.txt')
+#train_parser.add_argument("--predicted_arcs_file_greedy", dest="predicted_arcs_file_greedy", help="filename for predicted arcs")
+#train_parser.add_argument("--predicted_rels_file_greedy", dest="predicted_rels_file_greedy", help="filename for predicted rels")
 #train_parser.add_argument("--predicted_stags_file", dest="predicted_stags_file", help="filename for predicted rels") ## for joint
 #train_parser.add_argument("--predicted_pos_file", dest="predicted_pos_file", help="filename for predicted rels") ## for joint
 
@@ -89,8 +89,8 @@ test_parser.add_argument("--get_accuracy",  help="compute tag accuracy", action=
 test_parser.add_argument("--save_tags", dest="save_tags", help="save 1-best tags")
 test_parser.add_argument("--predicted_arcs_file", dest="predicted_arcs_file", help="filename for predicted arcs")
 test_parser.add_argument("--predicted_rels_file", dest="predicted_rels_file", help="filename for predicted rels")
-test_parser.add_argument("--predicted_arcs_file_greedy", dest="predicted_arcs_file_greedy", help="filename for predicted arcs")
-test_parser.add_argument("--predicted_rels_file_greedy", dest="predicted_rels_file_greedy", help="filename for predicted rels")
+#test_parser.add_argument("--predicted_arcs_file_greedy", dest="predicted_arcs_file_greedy", help="filename for predicted arcs")
+#test_parser.add_argument("--predicted_rels_file_greedy", dest="predicted_rels_file_greedy", help="filename for predicted rels")
 test_parser.add_argument("--predicted_stags_file", dest="predicted_stags_file", help="filename for predicted rels") ## for joint
 test_parser.add_argument("--predicted_pos_file", dest="predicted_pos_file", help="filename for predicted rels") ## for joint
 test_parser.add_argument("--save_probs", dest="save_probs", help="save probabilities", action="store_true", default=False)

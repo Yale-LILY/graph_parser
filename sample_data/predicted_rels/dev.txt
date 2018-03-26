@@ -1,100 +1,100 @@
-nsubj nsubj case case case case punct punct punct
-case punct punct
-nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj case case case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct
-case case case case punct
-case case case case case punct
-nsubj case case case case case punct punct punct
-nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct
-nsubj case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-case case case punct
-nsubj case case case nsubj case case nsubj nsubj punct punct punct
-nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj case case case case case case punct punct punct
-punct punct
-nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj case case case case case case punct punct
-nsubj case case case case case punct punct
-nsubj case nsubj nsubj case case case case punct punct
-case case punct
-nsubj case case case case case case nsubj nsubj punct punct punct
-nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-case case case case case case punct
-nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct
-nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj nsubj case case nsubj nsubj nsubj nsubj punct punct punct
-nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj case nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj case case nsubj case case case case nsubj punct punct punct
-nsubj case case punct
-case case punct
-nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct punct
-case case case case punct
-nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj case case case case case nsubj nsubj nsubj punct punct punct
-nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-case case case case case case punct
-nsubj case case case case case case nsubj nsubj nsubj punct punct punct
-nsubj case case case case case punct punct punct
-nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj nsubj nsubj case case case nsubj nsubj punct punct
-punct punct
-nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj nsubj nsubj case case case case case punct punct punct
-case case punct
-nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj nsubj case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct
-punct punct punct
-case punct punct
-case case case case punct
-nsubj nsubj case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct
-nsubj case case case case case case punct punct
-case case case case case punct
-case case punct
-nsubj case case case nsubj case case nsubj nsubj punct punct punct
-nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj case case case case case case nsubj nsubj punct punct punct
-nsubj case nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct
-nsubj case case nsubj case case case case case punct punct punct
-nsubj case nsubj case case case case case case case punct punct
-nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj case case case case case case case punct punct
-nsubj case case case case case case punct punct
-nsubj case case case case case nsubj punct punct punct
-nsubj case case case case punct
-nsubj case case case case case punct
-nsubj case case case case case case punct punct punct
-case case case case punct
-case case case punct
-nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct
-punct punct
-nsubj case case case case case punct punct punct
-nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj case case case case case punct punct
-case case case case case punct punct
-case case case case punct
-nsubj case case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-case case case case case punct
-case punct punct
-case case case punct
-nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-case case case case punct
-nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct
-case case case case case case punct punct
-case case case case case punct
-nsubj case case case case case case punct punct
-nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct
-nsubj case case nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct
-case case punct
-nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct
-case case case case case case punct
-nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct
-nsubj case case case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct
-case case case punct
-nsubj nsubj case nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct
-nsubj nsubj case case nsubj case case case case case punct punct punct
-nsubj case case case nsubj nsubj nsubj nsubj nsubj punct punct punct
+case case case case case case case det det
+acl acl acl
+case case case case case case case case case case case case case case case case case case case case
+case case case case case case case case case case case case case case case case case case case case case case case case case case case
+acl det det det det
+case det det det det det
+advmod advmod case case case case case advmod advmod
+case case case case case case case case case case case case case case case case case case
+case case case case case case case case case case case case case case
+acl acl acl acl
+case case case case case case case case case case case case
+case case case case case case case case case case case case case case case case case case case case case case case case case
+case advmod case case case case case case case advmod
+acl acl
+case case case case case case case case case case case case case case case case case case case case case advmod
+case case case case case case case case case
+case case case case case case det det
+case case case case case case case case case det
+acl acl acl
+case case case case case case case case case case case case
+case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case
+case det case det det det det
+case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case
+case case case case case case case case case case case case case case case case advmod
+case case case case case case case case case case case
+case case case case case case case case case case case case
+case case case case case case case case case case advmod
+case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case
+case case case case case case case case case case case case
+acl acl acl acl
+acl acl acl
+case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case
+acl case det det det
+case case case case case case case case case case case case case case case case case case case case case case
+case case case case case case case case case case case case
+case case case case case case case case case case case case case case case
+case case case case case case det
+case case case case case case case case case case case case case
+case case case case case case case case advmod
+case case case case case case case case case case case case case case advmod
+case case case case case case case case det det
+acl acl
+case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case
+case case case case case case case case case case advmod
+acl acl acl
+case case case case case case case case case case case case case case case
+case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case
+acl acl acl
+acl acl acl
+acl det det det det
+case case case case case case case case case case case case case case case
+case case case case case case case case case case case case case case case case advmod
+advmod case case case case case case case case
+case case case det det det
+acl acl acl
+case case case case case case case case case case case case
+case case case case case case case case case case case case case case case case case case case case case case case case case case det det
+case case case case case case case case case case case case
+case case case case case case case case case case case case
+case case case case case case case case case case case case
+case case case case case case case case case case case case
+case case case case case case case case case case case case case case case case case case
+case case case case case case case case case advmod
+case case case case case case case case advmod
+case case case case case case case case advmod advmod
+case det case det det det
+case case case case case det det
+case advmod case case case case case case case advmod
+acl acl acl acl case
+acl acl acl acl
+case case case case case case case case case case case case case case case case case case case case
+acl acl
+case case case case case case case case case
+case case case case case case case case case case case case case case
+case case case case case case case case
+case case case case case det det
+acl acl det det det
+case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case
+case case case det det det
+acl acl acl
+acl acl acl acl
+case case case case case case case case case case case case case case case
+acl acl acl acl acl
+case case case case case case case case case case case case case case case case case det
+case case case case case case advmod advmod
+case det case det det det
+case case case case case case case case case
+case case case case case case case case case case case case case case det det
+case case case case case case case case case case case advmod
+case case case case case case case case case case case case case case case case case case case
+acl acl acl
+case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case case
+case case case case case case case case case case case case case case case case case case case
+case det case det det det det
+case case case case case case case case case case case case case case case case case case case case case case case case case case case case case
+case case case case case case case case case case case case case case case case case case case case case
+acl acl acl acl
+case case case case case case case case case case case case case case case case case case case case case case case case case case case case
+case case case case case case case case case case case case case
+case case case case case case case case case case case advmod

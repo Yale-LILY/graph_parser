@@ -41,6 +41,7 @@ def output_conllu(test_opts):
             fout.write('\n')
 
 if __name__ == '__main__':
+    print('running converter')
     class test_opts(object):
         def __init__(self):
             self.text_test = 'sample_data/sents/dev.txt'
