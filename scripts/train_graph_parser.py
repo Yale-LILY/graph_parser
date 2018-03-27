@@ -17,6 +17,7 @@ def train_parser(config):
     train_data_info = ' --text_train {} --jk_train {} --tag_train {} --arc_train {} --rel_train {}'.format(*train_data_dirs)
     dev_data_dirs = map(lambda x: os.path.join(base_dir, x, 'dev.txt'), features)
     dev_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {}'.format(*dev_data_dirs)
+    dev_data_info += ' --conllu_test {}'.format(os.path.join(base_dir, 'conllu', 'dev.conllu'))
     model_config_dict = config['parser']
     model_config_info = ''
     for param_type in model_config_dict.keys():
@@ -33,6 +34,10 @@ def train_parser(config):
     if not os.path.isdir(os.path.dirname(output_file)):
         os.makedirs(os.path.dirname(output_file))
     output_info += ' --predicted_rels_file {}'.format(output_file)
+    output_file = os.path.join(base_dir, 'predicted_conllu', '{}.conllu'.format('dev'))
+    if not os.path.isdir(os.path.dirname(output_file)):
+        os.makedirs(os.path.dirname(output_file))
+    output_info += ' --predicted_conllu_file {}'.format(output_file)
     complete_command += output_info
     subprocess.check_call(complete_command, shell=True)
 

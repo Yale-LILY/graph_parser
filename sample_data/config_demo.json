@@ -27,7 +27,7 @@
                   "mlp_num_layers": "1"
                  },
           "scores": {
-                  "metrics": "NoPunct_LAS NoPunct_UAS Stagging POS"
+                  "metrics": "WeightedLAS LAS UAS"
                     },
           "model_options": {
                   "model": "Parsing_Model"

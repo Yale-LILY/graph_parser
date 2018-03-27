@@ -22,6 +22,7 @@ train_parser.add_argument("--jk_test", dest="jk_test", help="jk data for testing
 train_parser.add_argument("--tag_test", dest="tag_test", help="tag data for testing")
 train_parser.add_argument("--arc_test", dest="arc_test", help="arc data for testing")
 train_parser.add_argument("--rel_test", dest="rel_test", help="rel data for testing")
+train_parser.add_argument("--conllu_test", dest="conllu_test", help="conllu data for testing")
 
 ## model configuration
 
@@ -67,6 +68,7 @@ train_parser.add_argument("--metrics", nargs='+', dest="metrics", help="content 
 ## Output Options
 train_parser.add_argument("--predicted_arcs_file", dest="predicted_arcs_file", help="filename for predicted arcs")
 train_parser.add_argument("--predicted_rels_file", dest="predicted_rels_file", help="filename for predicted rels")
+train_parser.add_argument("--predicted_conllu_file", dest="predicted_conllu_file", help="filename for predicted conllu")
 #train_parser.add_argument("--predicted_arcs_file_greedy", dest="predicted_arcs_file_greedy", help="filename for predicted arcs")
 #train_parser.add_argument("--predicted_rels_file_greedy", dest="predicted_rels_file_greedy", help="filename for predicted rels")
 #train_parser.add_argument("--predicted_stags_file", dest="predicted_stags_file", help="filename for predicted rels") ## for joint
@@ -81,6 +83,7 @@ test_parser.add_argument("--jk_test", dest="jk_test", help="jk data for testing"
 test_parser.add_argument("--tag_test", dest="tag_test", help="tag data for testing")
 test_parser.add_argument("--arc_test", dest="arc_test", help="tag data for testing")
 test_parser.add_argument("--rel_test", dest="rel_test", help="tag data for testing")
+test_parser.add_argument("--conllu_test", dest="conllu_test", help="conllu data for testing")
 
 ### Model Information
 test_parser.add_argument("--model", dest="modelname", help="model name")

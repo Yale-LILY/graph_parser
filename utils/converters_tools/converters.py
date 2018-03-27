@@ -14,9 +14,9 @@ def output_conllu(test_opts):
     #pos = read_sents(test_opts.predicted_pos_file)
     arcs = read_sents(test_opts.predicted_arcs_file)
     rels = read_sents(test_opts.predicted_rels_file)
-    if not os.path.isdir(os.path.join(test_opts.base_dir, 'predicted_conllu')):
-        os.makedirs(os.path.join(test_opts.base_dir, 'predicted_conllu'))
-    with open(os.path.join(test_opts.base_dir, 'predicted_conllu', 'test.conllu'), 'wt') as fout:
+    #if not os.path.isdir(os.path.join(test_opts.base_dir, 'predicted_conllu')):
+        #os.makedirs(os.path.join(test_opts.base_dir, 'predicted_conllu'))
+    with open(test_opts.predicted_conllu_file, 'wt') as fout:
         for sent_idx in range(len(sents)):
             sent = sents[sent_idx]
             #stags_sent = stags[sent_idx]
@@ -45,10 +45,11 @@ if __name__ == '__main__':
     class test_opts(object):
         def __init__(self):
             self.text_test = 'sample_data/sents/dev.txt'
-            #self.predicted_arcs_file = 'sample_data/arcs/dev.txt'
-            #self.predicted_rels_file = 'sample_data/rels/dev.txt'
-            self.predicted_arcs_file = 'dev_arcs.txt'
-            self.predicted_rels_file = 'dev_rels.txt'
+            self.predicted_arcs_file = 'sample_data/arcs/dev.txt'
+            self.predicted_rels_file = 'sample_data/rels/dev.txt'
+            #self.predicted_arcs_file = 'dev_arcs.txt'
+            #self.predicted_rels_file = 'dev_rels.txt'
             self.base_dir = 'sample_data'
+            self.predicted_conllu_file = 'sample_data/conllu/dev.conllu'
     output_conllu(test_opts())
     
