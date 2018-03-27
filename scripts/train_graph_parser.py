@@ -24,7 +24,7 @@ def train_parser(config):
         for option, value in model_config_dict[param_type].items():
             model_config_info += ' --{} {}'.format(option, value)
     complete_command = base_command + train_data_info + dev_data_info + model_config_info
-    complete_command += ' --max_epochs 1' ## for debugging
+    #complete_command += ' --max_epochs 1' ## for debugging
     output_info = ''
     output_file = os.path.join(base_dir, 'predicted_arcs', '{}.txt'.format('dev'))
     if not os.path.isdir(os.path.dirname(output_file)):
