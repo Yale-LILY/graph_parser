@@ -124,7 +124,10 @@ class Parsing_Model(Basic_Model):
                 #self.loader.output_arcs(predictions['arcs_greedy'], self.test_opts.predicted_arcs_file_greedy)
                 #self.loader.output_rels(predictions['rels_greedy'], self.test_opts.predicted_rels_file_greedy)
                 output_conllu(self.test_opts)
-                scores = get_scores(self.test_opts)
+                if self.test_opts.get_accuracy:
+                    scores = get_scores(self.test_opts)
+                else:
+                    scores = {} ## We don't have gold conllu to get scores.
                 if self.test_opts.get_weight:
                     stag_embeddings = session.run(self.stag_embeddings)
                     self.loader.output_weight(stag_embeddings)

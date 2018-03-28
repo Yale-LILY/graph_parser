@@ -1,4 +1,4 @@
-# A TensorFlow implementation of Graph-based Biaffine Parser
+# Yale Dependency Parser for CoNLL 2018
 
 <img src="/images/biaffine_parsing.png" width="300">
 
@@ -16,6 +16,7 @@
 
 ## Requirements
 
+Python 3.6+.
 TensorFlow needs to be installed before running the training script.
 TensorFlow 1.0.0 or higher is supported. 
 

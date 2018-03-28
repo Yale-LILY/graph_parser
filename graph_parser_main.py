@@ -92,6 +92,7 @@ test_parser.add_argument("--get_accuracy",  help="compute tag accuracy", action=
 test_parser.add_argument("--save_tags", dest="save_tags", help="save 1-best tags")
 test_parser.add_argument("--predicted_arcs_file", dest="predicted_arcs_file", help="filename for predicted arcs")
 test_parser.add_argument("--predicted_rels_file", dest="predicted_rels_file", help="filename for predicted rels")
+test_parser.add_argument("--predicted_conllu_file", dest="predicted_conllu_file", help="filename for predicted conllu")
 #test_parser.add_argument("--predicted_arcs_file_greedy", dest="predicted_arcs_file_greedy", help="filename for predicted arcs")
 #test_parser.add_argument("--predicted_rels_file_greedy", dest="predicted_rels_file_greedy", help="filename for predicted rels")
 test_parser.add_argument("--predicted_stags_file", dest="predicted_stags_file", help="filename for predicted rels") ## for joint
@@ -130,6 +131,6 @@ if opts.mode == "train":
     run_model(opts)
     
 if opts.mode == "test":
-    with open(os.path.join(os.path.dirname(opts.modelname), 'options.pkl')) as foptions:
+    with open(os.path.join(os.path.dirname(opts.modelname), 'options.pkl'), 'rb') as foptions:
         options=pickle.load(foptions)
     run_model_test(options, opts)
