@@ -1,10 +1,9 @@
-from utils.decoders.mst import mst
+from utils.decoders.stanford_heuristics import mst
 import numpy as np
 
 def predict_arcs_rels(arc_outputs, rel_scores, non_padding):
     ## arc_outputs non_padding [b, n (dep), n (parent)]
     ## rel_scores [b, n (dep), n (parent), r]
-    MIN = -10000
     predicted_arcs = []
     predicted_rels = []
     for sent_idx in range(arc_outputs.shape[0]):

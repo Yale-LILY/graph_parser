@@ -46,7 +46,5 @@ def train_parser(config):
 if __name__ == '__main__':
     config_file = sys.argv[1]
     config_file = read_config(config_file)
-    print('Convert conllu+stag file to sentences, pos, stag, arcs, and rels')
-#    converter(config_file)
     print('Train Parser')
     train_parser(config_file)

@@ -1,5 +1,8 @@
+import sys, os
+sys.path.append(os.getcwd())
 from utils.data_loader.data_process_secsplit import Dataset
 from utils.equations.lstm import get_lstm_weights, lstm
+from utils.equations.lstm_hw import get_lstm_hw_weights, lstm_hw
 from utils.equations.char_encoding import get_char_weights, encode_char
 from utils.equations.mlp import get_mlp_weights, mlp
 from utils.equations.arc import get_arc_weights, arc_equation
@@ -10,8 +13,6 @@ import time
 import pickle
 import tensorflow as tf
 from tensorflow.contrib.seq2seq import sequence_loss
-import os
-import sys
 
 
 class Basic_Model(object):
@@ -91,6 +92,24 @@ class Basic_Model(object):
         h = tf.unstack(cell_hidden, 2, axis=1)[1] #[seq_len, batch_size, units]
         return h
 
+    def add_lstm_hw(self, inputs, i, name, backward=False):
+        prev_init = tf.zeros([2, tf.shape(inputs)[1], self.opts.units])  # [2, batch_size, num_units]
+        #prev_init = tf.zeros([2, 100, self.opts.units])  # [2, batch_size, num_units]
+        if i == 0:
+            inputs_dim = self.inputs_dim
+        else:
+            inputs_dim = self.opts.units*2 ## concat after each layer
+        weights = get_lstm_hw_weights('{}_LSTM_layer{}'.format(name, i), inputs_dim, self.opts.units, tf.shape(inputs)[1], self.hidden_prob)
+        if backward:
+            ## backward: reset states after zero paddings
+            non_paddings = tf.transpose(self.weight, [1, 0]) ## [batch_size, seq_len] => [seq_len, batch_size]
+            non_paddings = tf.reverse(non_paddings, [0])
+            cell_hidden = tf.scan(lambda prev, x: lstm_hw(prev, x, weights, backward=backward), [inputs, non_paddings], prev_init)
+        else:
+            cell_hidden = tf.scan(lambda prev, x: lstm_hw(prev, x, weights), inputs, prev_init)
+         #cell_hidden [seq_len, 2, batch_size, units]
+        h = tf.unstack(cell_hidden, 2, axis=1)[1] #[seq_len, batch_size, units]
+        return h
 
     def add_dropout(self, inputs, keep_prob):
         ## inputs [seq_len, batch_size, inputs_dims/units]

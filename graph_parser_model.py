@@ -41,6 +41,7 @@ def run_model(opts, loader = None, epoch=0):
                 if bad_times >= opts.early_stopping:
                     print('Did not improve {} times in a row. Stopping early'.format(bad_times))
                     break
+                print('-'*50)
                 
 def run_model_test(opts, test_opts):
     g = tf.Graph()

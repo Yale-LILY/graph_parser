@@ -1,31 +1,31 @@
 import tensorflow as tf 
 
-def get_lstm_weights(name, inputs_dim, units, batch_size, hidden_prob, beam_size=0, reuse=False):
+def get_lstm_hw_weights(name, inputs_dim, units, batch_size, hidden_prob, beam_size=0, reuse=False):
     weights = {}
     with tf.variable_scope(name) as scope:
         if reuse:
             scope.reuse_variables()
-	weights['theta_x_i'] = tf.get_variable('theta_x_i', [inputs_dim, units])
-	weights['theta_x_f'] = tf.get_variable('theta_x_f', [inputs_dim, units])
-	weights['theta_x_o'] = tf.get_variable('theta_x_o', [inputs_dim, units] )
-	weights['theta_x_g'] = tf.get_variable('theta_x_g', [inputs_dim, units])
-	weights['W_highway_x'] = tf.get_variable('W_highway_x', [inputs_dim, units])
-	weights['W_input2output'] = tf.get_variable('W_input2output', [inputs_dim, units])
-	weights['theta_h_i'] = tf.get_variable('theta_h_i', [units, units])
-	weights['theta_h_f'] = tf.get_variable('theta_h_f', [units, units])
-	weights['theta_h_o'] = tf.get_variable('theta_h_o', [units, units])
-	weights['theta_h_g'] = tf.get_variable('theta_h_g', [units, units])
-	weights['W_highway_h'] = tf.get_variable('W_highway_h', [units, units])
-	weights['bias_i'] = tf.get_variable('bias_input', [units])
-	weights['bias_f'] = tf.get_variable('bias_forget', [units], initializer = tf.constant_initializer(1))
-	weights['bias_o'] = tf.get_variable('bias_output', [units])
-	weights['bias_g'] = tf.get_variable('bias_extract', [units])
-	weights['bias_highway'] = tf.get_variable('bias_highway', [units])
-	dummy_dp = tf.ones([batch_size, units])
-	weights['dropout'] = [tf.nn.dropout(dummy_dp, hidden_prob) for _ in xrange(5)]
+        weights['theta_x_i'] = tf.get_variable('theta_x_i', [inputs_dim, units])
+        weights['theta_x_f'] = tf.get_variable('theta_x_f', [inputs_dim, units])
+        weights['theta_x_o'] = tf.get_variable('theta_x_o', [inputs_dim, units] )
+        weights['theta_x_g'] = tf.get_variable('theta_x_g', [inputs_dim, units])
+        weights['W_highway_x'] = tf.get_variable('W_highway_x', [inputs_dim, units])
+        weights['W_input2output'] = tf.get_variable('W_input2output', [inputs_dim, units])
+        weights['theta_h_i'] = tf.get_variable('theta_h_i', [units, units])
+        weights['theta_h_f'] = tf.get_variable('theta_h_f', [units, units])
+        weights['theta_h_o'] = tf.get_variable('theta_h_o', [units, units])
+        weights['theta_h_g'] = tf.get_variable('theta_h_g', [units, units])
+        weights['W_highway_h'] = tf.get_variable('W_highway_h', [units, units])
+        weights['bias_i'] = tf.get_variable('bias_input', [units])
+        weights['bias_f'] = tf.get_variable('bias_forget', [units], initializer = tf.constant_initializer(1))
+        weights['bias_o'] = tf.get_variable('bias_output', [units])
+        weights['bias_g'] = tf.get_variable('bias_extract', [units])
+        weights['bias_highway'] = tf.get_variable('bias_highway', [units])
+        dummy_dp = tf.ones([batch_size, units])
+        weights['dropout'] = [tf.nn.dropout(dummy_dp, hidden_prob) for _ in range(5)]
         if beam_size > 0:
-	    dummy_dp = tf.ones([batch_size*beam_size, units])
-	    weights['dropout_post_first'] = [tf.nn.dropout(dummy_dp, hidden_prob) for _ in xrange(4)]
+            dummy_dp = tf.ones([batch_size*beam_size, units])
+            weights['dropout_post_first'] = [tf.nn.dropout(dummy_dp, hidden_prob) for _ in range(4)]
     return weights
 
 def get_decoder_weights(weights, name, inputs_dim, units, reuse=False):
@@ -38,7 +38,7 @@ def get_decoder_weights(weights, name, inputs_dim, units, reuse=False):
     weights['theta_x_g'] = tf.get_variable('theta_x_g_decoder', [inputs_dim, units])
     return weights
 
-def lstm(prev, x, weights, post_first=False, backward=False): # prev = c+h
+def lstm_hw(prev, x, weights, post_first=False, backward=False): # prev = c+h
     prev_c, prev_h = tf.unstack(prev, 2, 0) # [batch_size, units]
     if post_first:
         dropout = weights['dropout_post_first']

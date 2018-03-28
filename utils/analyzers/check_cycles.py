@@ -1,11 +1,12 @@
-from tarjan import Tarjan
+from utils.analyzers.tarjan import Tarjan
 import numpy as np
-from converters import read_sents
+from utils.converters_tools.converters import read_sents
 if __name__ == '__main__':
-    input_file = 'sample_data/predicted_arcs/dev.txt'
+    #input_file = '/data/projects/conll2018-task/graph_parser/data/conll2017/ud-treebanks-conll2017/UD_English/predicted_arcs/dev.txt'
+    #input_file = 'sample_data/predicted_arcs/dev.txt'
     #input_file = 'sample_data/predicted_arcs_greedy/dev.txt'
     #input_file = '/data/lily/jk964/active_projects/tag/pete/predicted_arcs/test_texts.txt'
-    #input_file = '/data/lily/jk964/active_projects/ud/graph_parser/data/tag_wsj/predicted_arcs/dev.txt'
+    input_file = '/data/lily/jk964/active_projects/ud/graph_parser/data/tag_wsj/predicted_arcs_greedy/dev.txt'
     predicted_arcs = read_sents(input_file)
     for sent_idx in range(len(predicted_arcs)):
         predictions = np.array([0] + list(map(int, predicted_arcs[sent_idx])))
