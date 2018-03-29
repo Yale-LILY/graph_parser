@@ -1,4 +1,4 @@
-import os
+import os, io
 
 def read_sents(sents_file):
     sents = []
@@ -16,7 +16,7 @@ def output_conllu(test_opts):
     rels = read_sents(test_opts.predicted_rels_file)
     #if not os.path.isdir(os.path.join(test_opts.base_dir, 'predicted_conllu')):
         #os.makedirs(os.path.join(test_opts.base_dir, 'predicted_conllu'))
-    with open(test_opts.predicted_conllu_file, 'wt') as fout:
+    with io.open(test_opts.predicted_conllu_file, 'wt', encoding='utf-8') as fout:
         for sent_idx in range(len(sents)):
             sent = sents[sent_idx]
             #stags_sent = stags[sent_idx]
@@ -24,21 +24,21 @@ def output_conllu(test_opts):
             arcs_sent = arcs[sent_idx]
             rels_sent = rels[sent_idx]
             for word_idx in range(len(sent)):
-                line = [str(word_idx+1)]
-                line.append(sent[word_idx])
-                line.append('_')
-                line.append('_')
-                line.append('_')
+                line = [str(word_idx+1).decode('utf-8')]
+                line.append(sent[word_idx].decode('utf-8'))
+                line.append(u'_')
+                line.append(u'_')
+                line.append(u'_')
                 #line.append(stags_sent[word_idx])
                 #line.append(pos_sent[word_idx])
-                line.append('_')
-                line.append(arcs_sent[word_idx])
-                line.append(rels_sent[word_idx])
-                line.append('_')
-                line.append('_')
-                fout.write('\t'.join(line))
-                fout.write('\n')
-            fout.write('\n')
+                line.append(u'_')
+                line.append(arcs_sent[word_idx].decode('utf-8'))
+                line.append(rels_sent[word_idx].decode('utf-8'))
+                line.append(u'_')
+                line.append(u'_')
+                fout.write(u'\t'.join(line))
+                fout.write(u'\n')
+            fout.write(u'\n')
 
 if __name__ == '__main__':
     print('running converter')

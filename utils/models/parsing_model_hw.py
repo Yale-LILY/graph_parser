@@ -1,3 +1,4 @@
+from __future__ import print_function
 from utils.data_loader.data_process_secsplit import Dataset
 from utils.decoders.predict import predict_arcs_rels
 from utils.converters_tools.converters import output_conllu
