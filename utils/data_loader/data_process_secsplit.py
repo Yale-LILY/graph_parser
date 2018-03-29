@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python2
 import numpy as np
 from utils.data_loader.preprocessing import Tokenizer, pad_sequences, arcs2seq
 from utils.data_loader.mica.nbest import output_mica_nbest
@@ -37,7 +37,7 @@ class Dataset(object):
         self.inputs_test = {}
 
         ## indexing sents files
-        f_train = open(path_to_text)
+        f_train = io.open(path_to_text, encoding='utf-8')
         texts = f_train.readlines()
         self.nb_train_samples = len(texts)
         f_train.close()
@@ -53,7 +53,7 @@ class Dataset(object):
         glove_size = opts.embedding_dim
         self.embeddings_index = {}
         print('Indexing word vectors.')
-        f = open(opts.word_embeddings_file)
+        f = io.open(opts.word_embeddings_file, encoding='utf-8')
         for line in f:
             values = line.split()
             word = values[0]
@@ -77,7 +77,7 @@ class Dataset(object):
             self.word_embeddings[self.word_index[unseen]] = self.embeddings_index[unseen]
         self.idx_to_word = invert_dict(self.word_index)
         print('end glove indexing')
-        f_test = open(path_to_text_test)
+        f_test = io.open(path_to_text_test, encoding='utf-8')
         texts = texts +  f_test.readlines()
         self.nb_validation_samples = len(texts) - self.nb_train_samples
         f_test.close()
@@ -109,7 +109,7 @@ class Dataset(object):
 
         ## indexing jackknife files
         if (opts.jk_dim > 0) or (opts.model in ['Parsing_Model_Joint_Both']):
-            f_train = open(path_to_jk)
+            f_train = io.open(path_to_jk, encoding='utf-8')
             texts = f_train.readlines()
             f_train.close()
             tokenizer = Tokenizer(lower=False) 
@@ -118,7 +118,7 @@ class Dataset(object):
             self.nb_jk = len(self.jk_index)
             self.idx_to_jk = invert_dict(self.jk_index)
             print('Found {} unique POS tags including -unseen- and <-root->.'.format(self.nb_jk))
-            f_test = open(path_to_jk_test)
+            f_test = io.open(path_to_jk_test, encoding='utf-8')
             texts = texts + f_test.readlines() ## do not lowercase tCO
             f_test.close()
             jk_sequences = tokenizer.texts_to_sequences(texts)
@@ -128,7 +128,7 @@ class Dataset(object):
             ## indexing jackknife files ends
         ## indexing stag files
         if (opts.stag_dim > 0) or (opts.model in ['Parsing_Model_Joint', 'Parsing_Model_Shuffle', 'Parsing_Model_Joint_Both']):
-            f_train = open(path_to_tag)
+            f_train = io.open(path_to_tag, encoding='utf-8')
             texts = f_train.readlines()
             f_train.close()
             tokenizer = Tokenizer(lower=False) ## for tCO
@@ -138,7 +138,7 @@ class Dataset(object):
             self.nb_stags = len(self.tag_index)
             self.idx_to_tag = invert_dict(self.tag_index)
             print('Found {} unique supertags including -unseen- and <-root->.'.format(self.nb_stags))
-            f_test = open(path_to_tag_test)
+            f_test = io.open(path_to_tag_test, encoding='utf-8')
             texts = texts + f_test.readlines() ## do not lowercase tCO
             f_test.close()
             tag_sequences = tokenizer.texts_to_sequences(texts)
@@ -149,7 +149,7 @@ class Dataset(object):
             ## indexing stag files ends
 
         ## indexing rel files
-        f_train = open(path_to_rel)
+        f_train = io.open(path_to_rel, encoding='utf-8')
         texts = f_train.readlines()
         f_train.close()
         tokenizer = Tokenizer(lower=False)
@@ -158,7 +158,7 @@ class Dataset(object):
         self.nb_rels = len(self.rel_index)
         self.idx_to_rel = invert_dict(self.rel_index)
         print('Found {} unique rels including -unseen-, NOT including <-root->.'.format(self.nb_rels))
-        f_test = open(path_to_rel_test)
+        f_test = io.open(path_to_rel_test, encoding='utf-8')
         texts = texts + f_test.readlines() ## do not lowercase tCO
         f_test.close()
         rel_sequences = tokenizer.texts_to_sequences(texts)
@@ -170,10 +170,10 @@ class Dataset(object):
 
         ## indexing arc files
         ## Notice arc sequences are already integers
-        f_train = open(path_to_arc)
+        f_train = io.open(path_to_arc, encoding='utf-8')
         arc_sequences = f_train.readlines()
         f_train.close()
-        f_test = open(path_to_arc_test)
+        f_test = io.open(path_to_arc_test, encoding='utf-8')
         arc_sequences = arcs2seq(arc_sequences + f_test.readlines())
         f_test.close()
         self.inputs_train['arcs'] = arc_sequences[:self.nb_train_samples]
@@ -261,22 +261,22 @@ class Dataset(object):
             ## For formatting, let's calculate sentence lengths. np.sum is also faster than a for loop
             sents_lengths = np.sum(self.inputs_test['words']!=0, 1) - 1 ## dummy ROOT
             stag_idx = 0
-            with open(filename, 'wt') as fwrite:
+            with io.open(filename, 'wt', encoding='utf-8') as fwrite:
                 for sent_idx in range(len(sents_lengths)):
-                    fwrite.write(' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
-                    fwrite.write('\n')
+                    fwrite.write(u' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
+                    fwrite.write(u'\n')
                     stag_idx += sents_lengths[sent_idx]
 
     def output_arcs(self, predictions, filename):
         if filename is not None:
-            stags = list(map(str, predictions))
+            stags = list(map(unicode, predictions))
             ## For formatting, let's calculate sentence lengths. np.sum is also faster than a for loop
             sents_lengths = np.sum(self.inputs_test['words']!=0, 1) - 1 ## dummy ROOT
             stag_idx = 0
-            with open(filename, 'wt') as fwrite:
+            with io.open(filename, 'wt', encoding='utf-8') as fwrite:
                 for sent_idx in range(len(sents_lengths)):
-                    fwrite.write(' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
-                    fwrite.write('\n')
+                    fwrite.write(u' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
+                    fwrite.write(u'\n')
                     stag_idx += sents_lengths[sent_idx]
 
     def output_stags(self, predictions, filename): ## output stags for joint
@@ -285,10 +285,10 @@ class Dataset(object):
         ## To Do: allow for the CoNLL format
         sents_lengths = np.sum(self.inputs_test['words']!=0, 1) - 1 ## dummy ROOT
         stag_idx = 0
-        with open(filename, 'wt') as fwrite:
+        with io.open(filename, 'wt', encoding='utf-8') as fwrite:
             for sent_idx in range(len(sents_lengths)):
-                fwrite.write(' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
-                fwrite.write('\n')
+                fwrite.write(u' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
+                fwrite.write(u'\n')
                 stag_idx += sents_lengths[sent_idx]
 
     def output_pos(self, predictions, filename): ## output stags for joint
@@ -297,20 +297,20 @@ class Dataset(object):
         ## To Do: allow for the CoNLL format
         sents_lengths = np.sum(self.inputs_test['words']!=0, 1) - 1 ## dummy ROOT
         stag_idx = 0
-        with open(filename, 'wt') as fwrite:
+        with io.open(filename, 'wt', encoding='utf-8') as fwrite:
             for sent_idx in range(len(sents_lengths)):
-                fwrite.write(' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
-                fwrite.write('\n')
+                fwrite.write(u' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
+                fwrite.write(u'\n')
                 stag_idx += sents_lengths[sent_idx]
     def output_probs(self, probs):
         output_mica_nbest(probs, self.idx_to_tag)
 
     def output_weight(self, stag_embeddings):
         filename = 'stag_embeddings.txt'
-        with open(filename, 'wt') as fout:
+        with io.open(filename, 'wt', encoding='utf-8') as fout:
             for i in range(stag_embeddings.shape[0]):
                 if i in self.idx_to_tag.keys():
-                    output_row = [self.idx_to_tag[i]]+list(map(str, stag_embeddings[i]))
+                    output_row = [self.idx_to_tag[i]]+list(map(unicode, stag_embeddings[i]))
                     fout.write(' '.join(output_row))
                     fout.write('\n')
 

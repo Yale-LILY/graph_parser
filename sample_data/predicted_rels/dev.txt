@@ -1,100 +1,100 @@
-root root root root root root root root root
-obl:tmod punct punct
-root root root root root root root root root root root root root root root root root root root root
-root root root root root root root root root root root root root root root root root root root root root root root root root root root
-root root root root root
-root root root root root root
-root root root root root root root root root
-root root root root root root root root root root root root root root root root root root
-root root root root root root root root root root root root root root
-root root root root
-root root root root root root root root root root root root
-root root root root root root root root root root root root root root root root root root root root root root root root root
-root root root root root root root root root root
-obl:tmod obl:tmod
-root root root root root root root root root root root root root root root root root root root root root root
-root root root root root root root root root
-root root root root root root root punct
-root root root root root root root root root root
+root case case punct punct punct punct punct punct
 root punct punct
-root root root root root root root root root root root root
-root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root
-root root root root root root root
-root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root
-root root root root root root root root root root root root root root root root root
-root root root root root root root root root root root
-root root root root root root root root root root root root
-root root root root root root root root root root root
-root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root
-root root root root root root root root root root root root
-root root root punct
-punct punct punct
-root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root
-root root root root root
-root root root root root root root root root root root root root root root root root root root root root root
-root root root root root root root root root root root root
-root root root root root root root root root root root root root root root
-root root root root root root root
-root root root root root root root root root root root root root
-root root root root root root root root root
-root root root root root root root root root root root root root root root
-root root root root root root root root root root
-obl:tmod obl:tmod
-root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root
-root root root root root root root root root root root
+root case case case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct
+root case case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
+root punct punct punct punct
+root root punct punct punct punct
+root case case punct punct punct punct punct punct
+root case case case case case punct punct punct punct punct punct punct punct punct punct punct punct
+root case case case punct punct punct punct punct punct punct punct punct punct
+root punct punct punct
+root case case case punct punct punct punct punct punct punct punct
+root case case case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
+root case case punct punct punct punct punct punct punct
+punct punct
+root case case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
+root case case punct punct punct punct punct punct
+root case case punct punct punct punct punct
+root case case punct punct punct punct punct punct punct
 root punct punct
-root root root root root root root root root root root root root root root
-root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root
-obl:tmod obl:tmod obl:tmod
-obl:tmod punct punct
-root root root root root
-root root root root root root root root root root root root root root root
-root root root root root root root root root root root root root root root root root
-root root root root root root root root root
-root root root root root root
-punct punct punct
-root root root root root root root root root root root root
-root root root root root root root root root root root root root root root root root root root root root root root root root root root root
-root root root root root root root root root root root root
-root root root root root root root root root root root root
-root root root root root root root root root root root root
-root root root root root root root root root root root root
-root root root root root root root root root root root root root root root root root root
-root root root root root root root root root root
-root root root root root root root root root
-root root root root root root root root root root
-root root root root root root
-root root root root root root root
-root root root root root root root root root root
-root root root root root
-root root root root
-root root root root root root root root root root root root root root root root root root root root
-obl:tmod obl:tmod
-root root root root root root root root root
-root root root root root root root root root root root root root root
-root root root root root root root root
-root root root root root root root
-root root root root root
-root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root
-root root root root root root
-punct punct punct
-root root root root
-root root root root root root root root root root root root root root root
-root root root root root
-root root root root root root root root root root root root root root root root root root
-root root root root root root root root
-root root root root root root
-root root root root root root root root root
-root root root root root root root root root root root root root root root root
-root root root root root root root root root root root root
-root root root root root root root root root root root root root root root root root root root
-punct punct punct
-root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root root
-root root root root root root root root root root root root root root root root root root root
-root root root root root root root
-root root root root root root root root root root root root root root root root root root root root root root root root root root root root root
-root root root root root root root root root root root root root root root root root root root root root
-root root root punct
-root root root root root root root root root root root root root root root root root root root root root root root root root root root root
-root root root root root root root root root root root root root
-root root root root root root root root root root root root
+root case case case punct punct punct punct punct punct punct punct
+root case case case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
+root case punct punct punct punct punct
+root case case case case case case case case case case case case case case case case case case case case case case case case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
+root case case case case punct punct punct punct punct punct punct punct punct punct punct punct
+root case case case punct punct punct punct punct punct punct
+root case case case punct punct punct punct punct punct punct punct
+root case case case punct punct punct punct punct punct punct
+root case case case case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
+root case case case punct punct punct punct punct punct punct punct
+root punct punct punct
+root punct punct
+nsubj case case case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
+root punct punct punct punct
+root case case case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
+root case case case punct punct punct punct punct punct punct punct
+root case case case case punct punct punct punct punct punct punct punct punct punct
+root case punct punct punct punct punct
+root case case case punct punct punct punct punct punct punct punct punct
+root case case punct punct punct punct punct punct
+root case case case case punct punct punct punct punct punct punct punct punct punct
+root case case punct punct punct punct punct punct punct
+punct punct
+root case case case case case case case case case case case case case case case case case case case case case case case case case case case case punct punct punct punct punct punct punct punct punct punct punct punct
+root case case case punct punct punct punct punct punct punct
+root punct punct
+root case case case case punct punct punct punct punct punct punct punct punct punct
+root case case case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
+root punct punct
+root punct punct
+root root punct punct punct
+root case case case case punct punct punct punct punct punct punct punct punct punct
+root case case case punct punct punct punct punct punct punct punct punct punct punct punct punct
+root case case punct punct punct punct punct punct
+root root punct punct punct punct
+root punct punct
+root case case case punct punct punct punct punct punct punct punct
+root case case case case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
+root case case case punct punct punct punct punct punct punct punct
+root case case case punct punct punct punct punct punct punct punct
+root case case case punct punct punct punct punct punct punct punct
+root case case case punct punct punct punct punct punct punct punct
+root case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct
+root case case punct punct punct punct punct punct punct
+root case case punct punct punct punct punct punct
+root case case punct punct punct punct punct punct punct
+root root punct punct punct punct
+root case punct punct punct punct punct
+root case case case punct punct punct punct punct punct
+root punct punct punct punct
+root punct punct punct
+root case case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct punct
+punct punct
+root case case punct punct punct punct punct punct
+root case case case case punct punct punct punct punct punct punct punct punct
+root case case punct punct punct punct punct
+root case punct punct punct punct punct
+root punct punct punct punct
+root case case case case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
+root root punct punct punct punct
+root punct punct
+root punct punct punct
+root case case case case punct punct punct punct punct punct punct punct punct punct
+root root punct punct punct
+root case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct
+root case case punct punct punct punct punct
+root root punct punct punct punct
+root case case punct punct punct punct punct punct
+root case case case case punct punct punct punct punct punct punct punct punct punct punct
+root case case case punct punct punct punct punct punct punct punct
+root case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct punct
+root punct punct
+root case case case case case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
+root case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct punct
+root case punct punct punct punct punct
+root case case case case case case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
+root case case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
+root punct punct punct
+root case case case case case case punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
+root case case case punct punct punct punct punct punct punct punct punct
+root case case case punct punct punct punct punct punct punct punct

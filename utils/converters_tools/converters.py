@@ -2,7 +2,7 @@ import os, io
 
 def read_sents(sents_file):
     sents = []
-    with open(sents_file) as fhand:
+    with io.open(sents_file, encoding='utf-8') as fhand:
         for line in fhand:
             sent = line.split()
             sents.append(sent)
@@ -24,16 +24,16 @@ def output_conllu(test_opts):
             arcs_sent = arcs[sent_idx]
             rels_sent = rels[sent_idx]
             for word_idx in range(len(sent)):
-                line = [str(word_idx+1).decode('utf-8')]
-                line.append(sent[word_idx].decode('utf-8'))
+                line = [unicode(word_idx+1)]
+                line.append(sent[word_idx]) ## already unicode
                 line.append(u'_')
                 line.append(u'_')
                 line.append(u'_')
                 #line.append(stags_sent[word_idx])
                 #line.append(pos_sent[word_idx])
                 line.append(u'_')
-                line.append(arcs_sent[word_idx].decode('utf-8'))
-                line.append(rels_sent[word_idx].decode('utf-8'))
+                line.append(unicode(arcs_sent[word_idx]))
+                line.append(rels_sent[word_idx]) ## already unicode
                 line.append(u'_')
                 line.append(u'_')
                 fout.write(u'\t'.join(line))

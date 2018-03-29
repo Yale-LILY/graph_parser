@@ -14,9 +14,9 @@
 
 <!--* [Notes](#notes) -->
 
-## Requirements
+## Environments
 
-Python 3.6+.
+Originally intended to code in [Python3](https://github.com/Yale-LILY/graph_parser/tree/python3), but ***I ran into a problem where testing performance of pretrained models got unstable.*** 10 hours of debugging did not pay off... This Python2 version yields the same performance after every run. I will work on debugging the [Python3] version in the future.
 TensorFlow needs to be installed before running the training script.
 TensorFlow 1.0.0 or higher is supported. 
 
@@ -26,15 +26,19 @@ Our architecture utilizes pre-trained word embedding vectors, [GloveVectors](htt
 ```bash
 wget http://nlp.stanford.edu/data/glove.6B.zip 
 ```
-and save it to a sub-directory glovevector/. 
+and save it to a sub-directory ```glovevector/```.
 
-## Data Format
-The biaffine parser takes as input a file in the Conllu+Supertag (conllustag) format, in which one column for supertags is added to the original conllu format at the end. See a [sample](sample_data/conllu/sample.conllustag).
+<!-- ## Data Format
+The biaffine parser takes as input a file in the Conllu+Supertag (conllustag) format, in which one column for supertags is added to the original conllu format at the end. See a [sample](sample_data/conllu/sample.conllustag). -->
 
+## <a name="train"></a>Preprocessing
+```bash
+python3 scripts/preprocess.py sample_data/config_demo.json
+```
 ## <a name="train"></a>Train a Parser
 All you need to do is to create a new directory for your data in the conllustag format  and a json file for the model configuration and data information. We provide a [sample json file](sample_data/config_demo.json) for the [sample](sample_data) data directory. You can train a parser on the sample data by the following command:
 ```bash
-python3 train_graph_parser.py sample_data/config_demo.json
+python2 train_graph_parser.py sample_data/config_demo.json
 ```
 After running this command, you should be getting the following files and directories in sample_data/:
 
