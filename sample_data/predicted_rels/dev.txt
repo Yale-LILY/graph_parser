@@ -1,100 +1,100 @@
-root root root punct punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj punct punct punct punct
 nsubj punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
-root root punct punct punct
-root root punct punct punct punct
-root root root punct punct punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct
-root punct punct punct
-root root root root punct punct punct punct punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
-root root root root punct punct punct punct punct punct
-nsubj punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
-root root root punct punct punct punct punct punct
-root root root punct punct punct punct punct
-root root root root punct punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case case punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case case case case case case case punct punct punct punct punct
+nsubj nsubj nsubj punct punct
+nsubj nsubj nsubj punct punct punct
+nsubj nsubj nsubj nsubj nsubj punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case case punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct punct
+nsubj nsubj punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case case case punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct
+root punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case case punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj punct punct punct punct
+nsubj nsubj nsubj nsubj case punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct
 nsubj punct punct
-root root root root punct punct punct punct punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
-root root root punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct
-root root root root punct punct punct punct punct punct punct
-root root root root punct punct punct punct punct punct punct punct
-root root root root punct punct punct punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
-root root root root punct punct punct punct punct punct punct punct
-root root punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case case case case case case case punct punct punct punct punct
+nsubj nsubj nsubj nsubj punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case case nsubj nsubj nsubj case case case case case case case case case case punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case case case case case punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct
+nsubj nsubj punct punct
 nsubj punct punct
-root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
-root root punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
-root root root root punct punct punct punct punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct
-root root root punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct
-root root root punct punct punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct
-root root root root punct punct punct punct punct punct
-nsubj punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
-root root root root punct punct punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case nsubj case case case case punct punct punct punct punct
+nsubj nsubj case punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case case punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct punct
+nsubj nsubj nsubj nsubj punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct
+root punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case case case case case case case punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct
 nsubj punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case case case case case case case punct punct punct punct punct
+root punct punct
 nsubj punct punct
+nsubj nsubj nsubj punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj punct punct punct punct
+nsubj nsubj nsubj punct punct punct
 nsubj punct punct
-root root punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct
-root root root punct punct punct punct punct punct
-root root punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case nsubj case case case punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct
+nsubj nsubj nsubj punct punct punct
+nsubj nsubj nsubj nsubj punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct
+nsubj nsubj case punct punct
+nsubj nsubj punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case case punct punct punct punct punct
+root punct
+nsubj nsubj nsubj nsubj nsubj punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj punct punct punct punct punct
+nsubj nsubj nsubj nsubj case punct punct punct
+nsubj nsubj nsubj nsubj punct punct punct
+nsubj nsubj nsubj punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case case case case case case punct punct punct punct punct
+nsubj nsubj nsubj punct punct punct
 nsubj punct punct
-root root root root punct punct punct punct punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
-root root root root punct punct punct punct punct punct punct punct
-root root root root punct punct punct punct punct punct punct punct
-root root root root punct punct punct punct punct punct punct punct
-root root root root punct punct punct punct punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct
-root root root root punct punct punct punct punct punct
-root root root punct punct punct punct punct punct
-root root root root punct punct punct punct punct punct
-root root punct punct punct punct
-root root root punct punct punct punct
-root root root root punct punct punct punct punct punct
-root root punct punct punct
-root punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
-nsubj punct
-root root root punct punct punct punct punct punct
-root root root root punct punct punct punct punct punct punct punct punct punct
-root root root punct punct punct punct punct
-root root root punct punct punct punct
-root root punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
-root root punct punct punct punct
+nsubj nsubj punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct punct
+nsubj nsubj nsubj punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case case punct punct punct punct punct
+nsubj nsubj nsubj nsubj case punct punct punct
+nsubj nsubj nsubj punct punct punct
+nsubj nsubj nsubj nsubj nsubj punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct punct
 nsubj punct punct
-root root punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct
-root root punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct
-root root root punct punct punct punct punct
-root root punct punct punct punct
-root root root punct punct punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct
-root root root root punct punct punct punct punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct
-nsubj punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct
-root root root punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
-root punct punct punct
-root root root root root punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct punct
-root root root root punct punct punct punct punct punct punct punct punct
-root root root root punct punct punct punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case case case nsubj case case case punct punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case case punct punct punct punct punct
+nsubj nsubj nsubj nsubj punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case case case case case case punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case case punct punct punct punct punct
+nsubj nsubj punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case case case case punct punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct
+nsubj nsubj nsubj nsubj nsubj nsubj nsubj case punct punct punct punct

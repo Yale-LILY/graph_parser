@@ -97,5 +97,5 @@ if __name__ == '__main__':
     best_model = opts.model_name
     data_types = config_file['data']['split'].keys()
     #data_types = [x for x in data_types if x!='train']
-    data_types = ['dev']
+    data_types = ['test']
     test_parser(config_file, best_model, data_types, opts.no_gold)

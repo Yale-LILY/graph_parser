@@ -1,6 +1,5 @@
 import sys, os
 sys.path.append(os.getcwd())
-from utils.data_loader.data_process_secsplit import Dataset
 from utils.equations.lstm import get_lstm_weights, lstm
 from utils.equations.lstm_hw import get_lstm_hw_weights, lstm_hw
 from utils.equations.char_encoding import get_char_weights, encode_char
@@ -136,7 +135,7 @@ class Basic_Model(object):
         return predictions, accuracy
 
     def add_train_op(self, loss):
-        optimizer = tf.train.AdamOptimizer()
+        optimizer = tf.train.AdamOptimizer(learning_rate=self.opts.lrate, beta1=0.9, beta2=0.9)
         train_op = optimizer.minimize(loss)
         return train_op
 
