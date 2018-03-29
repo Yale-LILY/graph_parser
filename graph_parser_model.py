@@ -32,7 +32,7 @@ def run_model(opts, loader = None, epoch=0):
                     best_accuracy = test_accuracy 
                 #saving_file = os.path.join(opts.model_dir, 'epoch{0}_accuracy{1:.5f}'.format(i+1, test_accuracy))
                     saving_file = os.path.join(opts.model_dir, 'best_model')
-                #print('saving it to {}'.format(saving_file))
+                    print('Saving it to {}.'.format(saving_file))
                     saver.save(session, saving_file)
                     bad_times = 0
                 else:

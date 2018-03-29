@@ -68,7 +68,7 @@ def test_parser(config, best_model, data_types, no_gold):
         output_info += ' --predicted_rels_file {}'.format(output_file)
         if not os.path.isdir(os.path.dirname(output_file)):
             os.makedirs(os.path.dirname(output_file))
-        output_file = os.path.join(base_dir, 'predicted_conllu', '{}.conllu'.format('dev'))
+        output_file = os.path.join(base_dir, 'predicted_conllu', '{}.conllu'.format(data_type))
         if not os.path.isdir(os.path.dirname(output_file)):
             os.makedirs(os.path.dirname(output_file))
         output_info += ' --predicted_conllu_file {}'.format(output_file)
