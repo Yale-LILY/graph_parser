@@ -16,7 +16,7 @@
 
 ## Environments
 
-Originally intended to code in [Python3](https://github.com/Yale-LILY/graph_parser/tree/python3), but ***I ran into a problem where testing performance of pretrained models got unstable.*** 10 hours of debugging did not pay off... This Python2 version yields the same performance after every run. I will work on debugging the [Python3] version in the future.
+Python 3.6 is supported.
 TensorFlow needs to be installed before running the training script.
 TensorFlow 1.0.0 or higher is supported. 
 

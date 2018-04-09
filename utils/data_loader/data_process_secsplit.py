@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 import numpy as np
 from utils.data_loader.preprocessing import Tokenizer, pad_sequences, arcs2seq
 from utils.data_loader.mica.nbest import output_mica_nbest
@@ -63,7 +63,7 @@ class Dataset(object):
 
         print('Found {} word vectors.'.format(len(self.embeddings_index)))
 
-        unseens = list(set(self.embeddings_index.keys()) - set(self.word_index.keys())) ## list of words that appear in glove but not in the training set
+        unseens = sorted(list(set(self.embeddings_index.keys()) - set(self.word_index.keys()))) ## list of words that appear in glove but not in the training set
         nb_unseens = len(unseens)
         print('Found {} words not in the training set but in the glove data'.format(nb_unseens))
 
