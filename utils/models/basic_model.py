@@ -140,9 +140,7 @@ class Basic_Model(object):
         return train_op
 
     def get_features(self):
-        self.features = ['arcs', 'rels']
-        if self.opts.embedding_dim > 0:
-            self.features.append('words')
+        self.features = ['words', 'arcs', 'rels']
         if self.opts.jk_dim > 0:
             self.features.append('jk')
         if self.opts.stag_dim > 0:

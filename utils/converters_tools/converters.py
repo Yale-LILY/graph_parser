@@ -24,7 +24,7 @@ def output_conllu(test_opts):
             arcs_sent = arcs[sent_idx]
             rels_sent = rels[sent_idx]
             for word_idx in range(len(sent)):
-                line = [unicode(word_idx+1)]
+                line = [str(word_idx+1)]
                 line.append(sent[word_idx]) ## already unicode
                 line.append(u'_')
                 line.append(u'_')
@@ -32,7 +32,7 @@ def output_conllu(test_opts):
                 #line.append(stags_sent[word_idx])
                 #line.append(pos_sent[word_idx])
                 line.append(u'_')
-                line.append(unicode(arcs_sent[word_idx]))
+                line.append(str(arcs_sent[word_idx]))
                 line.append(rels_sent[word_idx]) ## already unicode
                 line.append(u'_')
                 line.append(u'_')
