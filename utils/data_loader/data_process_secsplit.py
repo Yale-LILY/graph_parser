@@ -37,55 +37,56 @@ class Dataset(object):
         self.inputs_test = {}
 
         ## indexing sents files
-        f_train = io.open(path_to_text, encoding='utf-8')
-        texts = f_train.readlines()
-        self.nb_train_samples = len(texts)
-        f_train.close()
-        tokenizer = Tokenizer(lower=True)
-        tokenizer.fit_on_texts(texts)
-        #print(tokenizer.word_index['-unseen-'])
-        self.word_index = tokenizer.word_index
-        self.nb_words = len(self.word_index)
-        print('Found {} unique lowercased words including -unseen- and <-root->.'.format(self.nb_words))
+        if opts.embedding_dim > 0:
+            f_train = io.open(path_to_text, encoding='utf-8')
+            texts = f_train.readlines()
+            self.nb_train_samples = len(texts)
+            f_train.close()
+            tokenizer = Tokenizer(lower=True)
+            tokenizer.fit_on_texts(texts)
+            #print(tokenizer.word_index['-unseen-'])
+            self.word_index = tokenizer.word_index
+            self.nb_words = len(self.word_index)
+            print('Found {} unique lowercased words including -unseen- and <-root->.'.format(self.nb_words))
 
-        # lookup the glove word embeddings
-        # need to reserve indices for testing file. 
-        glove_size = opts.embedding_dim
-        self.embeddings_index = {}
-        print('Indexing word vectors.')
-        f = io.open(opts.word_embeddings_file, encoding='utf-8')
-        for line in f:
-            values = line.split()
-            word = values[0]
-            coefs = np.asarray(values[1:], dtype='float32')
-            self.embeddings_index[word] = coefs
-        f.close()
+            # lookup the glove word embeddings
+            # need to reserve indices for testing file. 
+            glove_size = opts.embedding_dim
+            self.embeddings_index = {}
+            print('Indexing word vectors.')
+            f = io.open(opts.word_embeddings_file, encoding='utf-8')
+            for line in f:
+                values = line.split()
+                word = values[0]
+                coefs = np.asarray(values[1:], dtype='float32')
+                self.embeddings_index[word] = coefs
+            f.close()
 
-        print('Found {} word vectors.'.format(len(self.embeddings_index)))
+            print('Found {} word vectors.'.format(len(self.embeddings_index)))
 
-        unseens = sorted(list(set(self.embeddings_index.keys()) - set(self.word_index.keys()))) ## list of words that appear in glove but not in the training set
-        nb_unseens = len(unseens)
-        print('Found {} words not in the training set but in the glove data'.format(nb_unseens))
+            unseens = sorted(list(set(self.embeddings_index.keys()) - set(self.word_index.keys()))) ## list of words that appear in glove but not in the training set
+            nb_unseens = len(unseens)
+            print('Found {} words not in the training set but in the glove data'.format(nb_unseens))
 
-        self.word_embeddings = np.zeros((self.nb_words+1+nb_unseens, glove_size)) ## +1 for padding (idx 0)
-        for word, i in self.word_index.items(): ## first index the words in the training set
-            embedding_vector = self.embeddings_index.get(word)
-            if embedding_vector is not None: ## otherwise zero vector
-                self.word_embeddings[i] = embedding_vector
-        for unseen in unseens:
-            self.word_index[unseen] = len(self.word_index) + 1 ## add unseen words to the word_index dictionary
-            self.word_embeddings[self.word_index[unseen]] = self.embeddings_index[unseen]
-        self.idx_to_word = invert_dict(self.word_index)
-        print('end glove indexing')
-        f_test = io.open(path_to_text_test, encoding='utf-8')
-        texts = texts +  f_test.readlines()
-        self.nb_validation_samples = len(texts) - self.nb_train_samples
-        f_test.close()
-        text_sequences = tokenizer.texts_to_sequences(texts)
-        #print(map(lambda x: self.idx_to_word[x], text_sequences[self.nb_train_samples]))
-        self.inputs_train['words'] = text_sequences[:self.nb_train_samples]
-        self.inputs_test['words'] = text_sequences[self.nb_train_samples:]
-        ## indexing sents files ends
+            self.word_embeddings = np.zeros((self.nb_words+1+nb_unseens, glove_size)) ## +1 for padding (idx 0)
+            for word, i in self.word_index.items(): ## first index the words in the training set
+                embedding_vector = self.embeddings_index.get(word)
+                if embedding_vector is not None: ## otherwise zero vector
+                    self.word_embeddings[i] = embedding_vector
+            for unseen in unseens:
+                self.word_index[unseen] = len(self.word_index) + 1 ## add unseen words to the word_index dictionary
+                self.word_embeddings[self.word_index[unseen]] = self.embeddings_index[unseen]
+            self.idx_to_word = invert_dict(self.word_index)
+            print('end glove indexing')
+            f_test = io.open(path_to_text_test, encoding='utf-8')
+            texts = texts +  f_test.readlines()
+            self.nb_validation_samples = len(texts) - self.nb_train_samples
+            f_test.close()
+            text_sequences = tokenizer.texts_to_sequences(texts)
+            #print(map(lambda x: self.idx_to_word[x], text_sequences[self.nb_train_samples]))
+            self.inputs_train['words'] = text_sequences[:self.nb_train_samples]
+            self.inputs_test['words'] = text_sequences[self.nb_train_samples:]
+            ## indexing sents files ends
         ## indexing char files
         if opts.chars_dim > 0:
             f_train = io.open(path_to_text, encoding='utf-8')
@@ -269,7 +270,8 @@ class Dataset(object):
 
     def output_arcs(self, predictions, filename):
         if filename is not None:
-            stags = list(map(unicode, predictions))
+            stags = list(map(str, predictions))
+            #stags = predictions
             ## For formatting, let's calculate sentence lengths. np.sum is also faster than a for loop
             sents_lengths = np.sum(self.inputs_test['words']!=0, 1) - 1 ## dummy ROOT
             stag_idx = 0
@@ -310,7 +312,7 @@ class Dataset(object):
         with io.open(filename, 'wt', encoding='utf-8') as fout:
             for i in range(stag_embeddings.shape[0]):
                 if i in self.idx_to_tag.keys():
-                    output_row = [self.idx_to_tag[i]]+list(map(unicode, stag_embeddings[i]))
+                    output_row = [self.idx_to_tag[i]]+stag_embeddings[i]
                     fout.write(' '.join(output_row))
                     fout.write('\n')
 
