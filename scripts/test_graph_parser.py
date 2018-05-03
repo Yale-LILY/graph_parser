@@ -11,6 +11,7 @@ parser.add_argument('model_name', metavar='N', help='an integer for the accumula
 parser.add_argument("--no_gold",  help="compute tag accuracy", action="store_true", default=False)
 parser.add_argument("--save_probs",  help="save tag probabilities", action="store_true", default=False)
 parser.add_argument("--get_weight",  help="get stag weight", action="store_true", default=False)
+parser.add_argument("--top_300",  help="get stag weight", action="store_true", default=False)
 opts = parser.parse_args()
 
 
@@ -25,9 +26,9 @@ def test_parser(config, best_model, data_types, no_gold):
     if model_type == 'Parsing_Model_Joint':
         print('Run joint training. Use gold supertags')
         if no_gold:
-            features = ['sents', 'predicted_pos', 'sents', 'sents', 'sents']
+            features = ['sents', 'gold_pos', 'sents', 'sents', 'sents']
         else:
-            features = ['sents', 'predicted_pos', 'gold_stag', 'arcs', 'rels']
+            features = ['sents', 'gold_pos', 'gold_stag', 'arcs', 'rels']
     elif model_type == 'Parsing_Model_Joint_Both':
         print('Run joint training. Use gold supertags')
         if no_gold:
@@ -36,9 +37,9 @@ def test_parser(config, best_model, data_types, no_gold):
             features = ['sents', 'gold_pos', 'gold_stag', 'arcs', 'rels']
     else:
         if no_gold:
-            features = ['sents', 'predicted_pos', 'predicted_stag', 'sents', 'sents']
+            features = ['sents', 'gold_pos', 'predicted_stag', 'sents', 'sents']
         else:
-            features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels']
+            features = ['sents', 'gold_pos', 'gold_pos', 'arcs', 'rels']
 
     if no_gold:
         base_command = 'python graph_parser_main.py test'
@@ -81,6 +82,8 @@ def test_parser(config, best_model, data_types, no_gold):
             output_info += ' --save_probs'
         if opts.get_weight: 
             output_info += ' --get_weight'
+        if opts.top_300: 
+            output_info += ' --top_300'
         if no_gold:
             test_data_dirs = map(lambda x: os.path.join(base_dir, x, '{}.txt'.format(data_type)), features)
             test_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {}'.format(*test_data_dirs)

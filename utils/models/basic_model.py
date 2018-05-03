@@ -32,6 +32,12 @@ class Basic_Model(object):
         with tf.device('/cpu:0'):
             with tf.variable_scope('word_embedding') as scope:
                 embedding = tf.get_variable('word_embedding_mat', self.loader.word_embeddings.shape, initializer=tf.constant_initializer(self.loader.word_embeddings))
+            if self.test_opts is not None:
+                if self.test_opts.top_300:
+                    print('Kepp top 300')
+                    zero_out = np.zeros(self.loader.word_embeddings.shape)
+                    zero_out[1:101, ] = 1.0 ## skip zero padding
+                    embedding = embedding*zero_out
 
             inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_dict['words']) ## [batch_size, seq_len, embedding_dim]
             inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, embedding_dim]

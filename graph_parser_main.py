@@ -105,6 +105,9 @@ test_parser.add_argument("--get_weight", dest="get_weight", help="save stag weig
 test_parser.add_argument("--content_test", dest="content_test", help="content data for testing")
 test_parser.add_argument("--metrics", nargs='+', dest="metrics", help="content data for testing")
 
+## Jabberwocky
+test_parser.add_argument("--top_300", dest="top_300", help="remove top 300", action="store_true", default=False)
+
 opts = parser.parse_args()
 
 if opts.mode == "train":
