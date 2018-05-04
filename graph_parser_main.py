@@ -35,6 +35,7 @@ train_parser.add_argument("--units", dest="units", help="hidden units size", typ
 train_parser.add_argument("--hidden_p", dest="hidden_p", help="keep fraction of hidden units", type=float, default = 1.0)
 train_parser.add_argument("--dropout_p", dest="dropout_p", help="keep fraction", type=float, default = 1.0)
 train_parser.add_argument("--word_embeddings_file", dest="word_embeddings_file", help="embeddings file", default = 'glovevector/glove.6B.100d.txt')
+train_parser.add_argument("--word_dropout", dest="word_dropout", help="keep fraction", type=float, default = 1.0)
 
 ### MLP config
 train_parser.add_argument("--mlp_num_layers",  dest="mlp_num_layers", help="number of MLP layers", type=int, default = 1)
@@ -126,14 +127,28 @@ if opts.mode == "train":
     params = ['bi', 'num_layers', 'units', 'hidden_p', 'dropout_p', 'mlp_num_layers', 'arc_mlp_units', 'rel_mlp_units', 'stag_dim', 'jk_dim', 'embedding_dim', 'input_dp', 'chars_dim', 'nb_filters', 'chars_window_size', 'lrate', 'seed']
     model_dir = '{}/'.format(opts.model) + '-'.join(map(lambda x: str(getattr(opts, x)), params))
     opts.model_dir = os.path.join(opts.base_dir, model_dir)
+    if opts.word_dropout < 1.0:
+        opts.model_dir += '-wd{}'.format(opts.word_dropout)
     print('Model Dirctory: {}'.format(opts.model_dir))
     if not os.path.isdir(opts.model_dir):
         os.makedirs(opts.model_dir)
     with open(os.path.join(opts.model_dir, 'options.pkl'), 'wb') as fhand:
         pickle.dump(opts, fhand)
+    opts.predicted_arcs_file = os.path.join(opts.model_dir, opts.predicted_arcs_file)
+    if not os.path.isdir(os.path.dirname(opts.predicted_arcs_file)):
+        os.makedirs(os.path.dirname(opts.predicted_arcs_file))
+    opts.predicted_rels_file = os.path.join(opts.model_dir, opts.predicted_rels_file)
+    if not os.path.isdir(os.path.dirname(opts.predicted_rels_file)):
+        os.makedirs(os.path.dirname(opts.predicted_rels_file))
+    opts.predicted_conllu_file = os.path.join(opts.model_dir, opts.predicted_conllu_file)
+    if not os.path.isdir(os.path.dirname(opts.predicted_conllu_file)):
+        os.makedirs(os.path.dirname(opts.predicted_conllu_file))
     run_model(opts)
     
 if opts.mode == "test":
     with open(os.path.join(os.path.dirname(opts.modelname), 'options.pkl'), 'rb') as foptions:
         options=pickle.load(foptions)
+    ## additional features not present in old models
+    if not hasattr(options, 'word_dropout'):
+        setattr(options, 'word_dropout', 1.0)
     run_model_test(options, opts)

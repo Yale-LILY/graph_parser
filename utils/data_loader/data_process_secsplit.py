@@ -43,6 +43,8 @@ class Dataset(object):
         f_train.close()
         tokenizer = Tokenizer(lower=True)
         tokenizer.fit_on_texts(texts)
+        with open('word_tokenizer.pkl', 'wb') as fout:
+            pickle.dump(tokenizer,fout)
         #print(tokenizer.word_index['-unseen-'])
         self.word_index = tokenizer.word_index
         self.nb_words = len(self.word_index)

@@ -27,6 +27,7 @@ class Basic_Model(object):
         self.input_keep_prob = tf.placeholder(tf.float32)
         self.hidden_prob = tf.placeholder(tf.float32)
         self.mlp_prob = tf.placeholder(tf.float32)  
+        self.word_dropout = tf.placeholder(tf.float32)
 
     def add_word_embedding(self): 
         with tf.device('/cpu:0'):
@@ -34,10 +35,12 @@ class Basic_Model(object):
                 embedding = tf.get_variable('word_embedding_mat', self.loader.word_embeddings.shape, initializer=tf.constant_initializer(self.loader.word_embeddings))
             if self.test_opts is not None:
                 if self.test_opts.top_300:
-                    print('Kepp top 300')
+                    print('Kepp top 70')
                     zero_out = np.zeros(self.loader.word_embeddings.shape)
-                    zero_out[1:101, ] = 1.0 ## skip zero padding
+                    zero_out[1:71, ] = 1.0 ## skip zero padding
                     embedding = embedding*zero_out
+            print('Word Dropout')
+            embedding = tf.nn.dropout(embedding, keep_prob=self.word_dropout, noise_shape=[self.loader.word_embeddings.shape[0], 1])*self.word_dropout ## do not scale
 
             inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_dict['words']) ## [batch_size, seq_len, embedding_dim]
             inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, embedding_dim]

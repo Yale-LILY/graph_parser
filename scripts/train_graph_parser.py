@@ -26,17 +26,17 @@ def train_parser(config):
     complete_command = base_command + train_data_info + dev_data_info + model_config_info
     #complete_command += ' --max_epochs 1' ## for debugging
     output_info = ''
-    output_file = os.path.join(base_dir, 'predicted_arcs', '{}.txt'.format('dev'))
-    if not os.path.isdir(os.path.dirname(output_file)):
-        os.makedirs(os.path.dirname(output_file))
+    output_file = os.path.join('predicted_arcs', '{}.txt'.format('dev'))
+    #if not os.path.isdir(os.path.dirname(output_file)):
+    #    os.makedirs(os.path.dirname(output_file))
     output_info += ' --predicted_arcs_file {}'.format(output_file)
-    output_file = os.path.join(base_dir, 'predicted_rels', '{}.txt'.format('dev'))
-    if not os.path.isdir(os.path.dirname(output_file)):
-        os.makedirs(os.path.dirname(output_file))
+    output_file = os.path.join('predicted_rels', '{}.txt'.format('dev'))
+    #if not os.path.isdir(os.path.dirname(output_file)):
+    #    os.makedirs(os.path.dirname(output_file))
     output_info += ' --predicted_rels_file {}'.format(output_file)
-    output_file = os.path.join(base_dir, 'predicted_conllu', '{}.conllu'.format('dev'))
-    if not os.path.isdir(os.path.dirname(output_file)):
-        os.makedirs(os.path.dirname(output_file))
+    output_file = os.path.join('predicted_conllu', '{}.conllu'.format('dev'))
+    #if not os.path.isdir(os.path.dirname(output_file)):
+    #    os.makedirs(os.path.dirname(output_file))
     output_info += ' --predicted_conllu_file {}'.format(output_file)
     complete_command += output_info
     subprocess.check_call(complete_command, shell=True)
