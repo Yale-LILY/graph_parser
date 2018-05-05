@@ -43,8 +43,8 @@ class Dataset(object):
         f_train.close()
         tokenizer = Tokenizer(lower=True)
         tokenizer.fit_on_texts(texts)
-        with open('word_tokenizer.pkl', 'wb') as fout:
-            pickle.dump(tokenizer,fout)
+        #with open('word_tokenizer.pkl', 'wb') as fout:
+        #    pickle.dump(tokenizer,fout)
         #print(tokenizer.word_index['-unseen-'])
         self.word_index = tokenizer.word_index
         self.nb_words = len(self.word_index)
@@ -88,6 +88,13 @@ class Dataset(object):
         self.inputs_train['words'] = text_sequences[:self.nb_train_samples]
         self.inputs_test['words'] = text_sequences[self.nb_train_samples:]
         ## indexing sents files ends
+        ## prepare word dropout alpha matrix
+        if opts.word_dropout_alpha > 0:
+            self.word_dropout_alpha_vec = np.ones([self.word_embeddings.shape[0]])
+            for i in range(1, self.word_embeddings.shape[0]-2):## skipping -unseen- and <-root->
+                self.word_dropout_alpha_vec[i] = (tokenizer.word_counts[self.idx_to_word[i]])/(tokenizer.word_counts[self.idx_to_word[i]] + opts.word_dropout_alpha)
+                ## 1-dropout rate because it's the keep prob
+
         ## indexing char files
         if opts.chars_dim > 0:
             f_train = io.open(path_to_text, encoding='utf-8')

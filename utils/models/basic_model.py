@@ -26,8 +26,10 @@ class Basic_Model(object):
         self.keep_prob = tf.placeholder(tf.float32)
         self.input_keep_prob = tf.placeholder(tf.float32)
         self.hidden_prob = tf.placeholder(tf.float32)
-        self.mlp_prob = tf.placeholder(tf.float32)  
+        self.mlp_prob = tf.placeholder(tf.float32)
         self.word_dropout = tf.placeholder(tf.float32)
+        if self.opts.word_dropout_alpha > 0:
+            self.word_dropout_alpha = tf.placeholder(tf.float32, shape = [self.loader.word_embeddings.shape[0]])
 
     def add_word_embedding(self): 
         with tf.device('/cpu:0'):
@@ -35,12 +37,13 @@ class Basic_Model(object):
                 embedding = tf.get_variable('word_embedding_mat', self.loader.word_embeddings.shape, initializer=tf.constant_initializer(self.loader.word_embeddings))
             if self.test_opts is not None:
                 if self.test_opts.top_300:
-                    print('Kepp top 70')
+                    print('Keep top 70')
                     zero_out = np.zeros(self.loader.word_embeddings.shape)
                     zero_out[1:71, ] = 1.0 ## skip zero padding
                     embedding = embedding*zero_out
-            print('Word Dropout')
             embedding = tf.nn.dropout(embedding, keep_prob=self.word_dropout, noise_shape=[self.loader.word_embeddings.shape[0], 1])*self.word_dropout ## do not scale
+            if self.opts.word_dropout_alpha > 0:
+                embedding = self.add_word_dropout_alpha(embedding)
 
             inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_dict['words']) ## [batch_size, seq_len, embedding_dim]
             inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, embedding_dim]
@@ -192,4 +195,11 @@ class Basic_Model(object):
         weights = get_rel_weights('rel', self.opts.rel_mlp_units, self.loader.nb_rels)
         rel_output, rel_scores = rel_equation(vectors['rel-head'], vectors['rel-dep'], weights, arc_predictions)  #[batch_size, seq_len, nb_rels]
         return arc_output, rel_output, rel_scores
-    
+    def add_word_dropout_alpha(self, embedding):
+        ## create dropout rates based on frequency
+        print('Adding word dropout alpha')
+        #embedding = tf.map_fn(lambda x: word_dropout_alpha(x[0], x[1]), [embedding, self.word_dropout_alpha], dtype=tf.float32)
+        word_dropout_alpha = tf.contrib.distributions.Bernoulli(probs=self.word_dropout_alpha)
+        word_dropout_alpha_mat = word_dropout_alpha.sample()
+        embedding = embedding*tf.cast(tf.expand_dims(word_dropout_alpha_mat, -1), tf.float32)
+        return embedding

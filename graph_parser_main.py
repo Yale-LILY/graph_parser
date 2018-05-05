@@ -36,6 +36,8 @@ train_parser.add_argument("--hidden_p", dest="hidden_p", help="keep fraction of 
 train_parser.add_argument("--dropout_p", dest="dropout_p", help="keep fraction", type=float, default = 1.0)
 train_parser.add_argument("--word_embeddings_file", dest="word_embeddings_file", help="embeddings file", default = 'glovevector/glove.6B.100d.txt')
 train_parser.add_argument("--word_dropout", dest="word_dropout", help="keep fraction", type=float, default = 1.0)
+train_parser.add_argument("--word_dropout_alpha", dest="word_dropout_alpha", help="keep fraction", type=float, default = -1.0)
+## minus for not doing word dropout with frequency
 
 ### MLP config
 train_parser.add_argument("--mlp_num_layers",  dest="mlp_num_layers", help="number of MLP layers", type=int, default = 1)
@@ -129,6 +131,8 @@ if opts.mode == "train":
     opts.model_dir = os.path.join(opts.base_dir, model_dir)
     if opts.word_dropout < 1.0:
         opts.model_dir += '-wd{}'.format(opts.word_dropout)
+    if opts.word_dropout_alpha > 0.0:
+        opts.model_dir += '-wa{}'.format(opts.word_dropout_alpha)
     print('Model Dirctory: {}'.format(opts.model_dir))
     if not os.path.isdir(opts.model_dir):
         os.makedirs(opts.model_dir)

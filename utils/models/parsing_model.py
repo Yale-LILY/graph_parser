@@ -68,6 +68,8 @@ class Parsing_Model(Basic_Model):
             feed[self.input_keep_prob] = self.opts.input_dp
             feed[self.mlp_prob] = self.opts.mlp_prob
             feed[self.word_dropout] = self.opts.word_dropout
+            if self.opts.word_dropout_alpha > 0:
+                feed[self.word_dropout_alpha] = self.loader.word_dropout_alpha_vec
             train_op = self.train_op
             _, loss, UAS, rel_acc = session.run([train_op, self.loss, self.UAS, self.rel_acc], feed_dict=feed)
             return loss, UAS, rel_acc
@@ -81,6 +83,8 @@ class Parsing_Model(Basic_Model):
             feed[self.input_keep_prob] = 1.0
             feed[self.mlp_prob] = 1.0
             feed[self.word_dropout] = 1.0
+            if self.opts.word_dropout_alpha > 0:
+                feed[self.word_dropout_alpha] = np.ones(self.loader.word_embeddings.shape[0]) 
 #            loss, accuracy, predictions, weight = session.run([self.loss, self.accuracy, self.predictions, self.weight], feed_dict=feed)
             loss, predicted_arcs, predicted_rels, UAS, weight, arc_outputs, rel_scores = session.run([self.loss, self.predicted_arcs, self.predicted_rels, self.UAS, self.weight, self.arc_outputs, self.rel_scores], feed_dict=feed)
             weight = weight.astype(bool)
