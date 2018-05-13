@@ -36,10 +36,14 @@ class Basic_Model(object):
             with tf.variable_scope('word_embedding') as scope:
                 embedding = tf.get_variable('word_embedding_mat', self.loader.word_embeddings.shape, initializer=tf.constant_initializer(self.loader.word_embeddings))
             if self.test_opts is not None:
-                if self.test_opts.top_300:
-                    print('Keep top 70')
+                self.embeddings = embedding
+                if self.test_opts.top_k:
                     zero_out = np.zeros(self.loader.word_embeddings.shape)
-                    zero_out[1:71, ] = 1.0 ## skip zero padding
+                    if self.test_opts.k != 0:
+                        zero_out[1:1+self.test_opts.k, ] = 1.0 ## skip zero padding
+                        print('Keep top {}'.format(self.test_opts.k))
+                    else:
+                        print('Full')
                     embedding = embedding*zero_out
             embedding = tf.nn.dropout(embedding, keep_prob=self.word_dropout, noise_shape=[self.loader.word_embeddings.shape[0], 1])*self.word_dropout ## do not scale
             if self.opts.word_dropout_alpha > 0:
@@ -55,6 +59,8 @@ class Basic_Model(object):
                 embedding = tf.get_variable('jk_embedding_mat', [self.loader.nb_jk+1, self.opts.jk_dim]) # +1 for padding
             inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_dict['jk']) ## [batch_size, seq_len, embedding_dim]
             inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, embedding_dim]
+            #print('Multiply POS vecs by 5.0')
+            #inputs = inputs*5.0
         return inputs 
 
     def add_stag_embedding(self):

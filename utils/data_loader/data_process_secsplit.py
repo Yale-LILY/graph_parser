@@ -89,11 +89,21 @@ class Dataset(object):
         self.inputs_test['words'] = text_sequences[self.nb_train_samples:]
         ## indexing sents files ends
         ## prepare word dropout alpha matrix
+        #out = open('word_counts.txt', 'wt')
         if opts.word_dropout_alpha > 0:
             self.word_dropout_alpha_vec = np.ones([self.word_embeddings.shape[0]])
+            #expected_dp = 0
+            #all_count = 0
             for i in range(1, self.word_embeddings.shape[0]-2):## skipping -unseen- and <-root->
                 self.word_dropout_alpha_vec[i] = (tokenizer.word_counts[self.idx_to_word[i]])/(tokenizer.word_counts[self.idx_to_word[i]] + opts.word_dropout_alpha)
+                #expected_dp += (1-self.word_dropout_alpha_vec[i])*tokenizer.word_counts[self.idx_to_word[i]]
+                #all_count += tokenizer.word_counts[self.idx_to_word[i]]
                 ## 1-dropout rate because it's the keep prob
+                #out.write(' '.join([self.idx_to_word[i], str(tokenizer.word_counts[self.idx_to_word[i]])]))
+                #out.write('\n')
+            #print('Expected Dropout')
+            #print(expected_dp/all_count)
+            #print(all_count)
 
         ## indexing char files
         if opts.chars_dim > 0:

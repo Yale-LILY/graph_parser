@@ -11,7 +11,8 @@ parser.add_argument('model_name', metavar='N', help='an integer for the accumula
 parser.add_argument("--no_gold",  help="compute tag accuracy", action="store_true", default=False)
 parser.add_argument("--save_probs",  help="save tag probabilities", action="store_true", default=False)
 parser.add_argument("--get_weight",  help="get stag weight", action="store_true", default=False)
-parser.add_argument("--top_300",  help="get stag weight", action="store_true", default=False)
+parser.add_argument("--top_k",  help="get stag weight", action="store_true", default=False)
+parser.add_argument("--k",  dest='k', help="Keep top", type=int, default=0)
 opts = parser.parse_args()
 
 
@@ -40,6 +41,7 @@ def test_parser(config, best_model, data_types, no_gold):
             features = ['sents', 'gold_pos', 'predicted_stag', 'sents', 'sents']
         else:
             features = ['sents', 'gold_pos', 'gold_pos', 'arcs', 'rels']
+            #features = ['sents', 'gold_cpos', 'gold_cpos', 'arcs', 'rels']
 
     if no_gold:
         base_command = 'python graph_parser_main.py test'
@@ -82,8 +84,9 @@ def test_parser(config, best_model, data_types, no_gold):
             output_info += ' --save_probs'
         if opts.get_weight: 
             output_info += ' --get_weight'
-        if opts.top_300: 
-            output_info += ' --top_300'
+        if opts.top_k: 
+            output_info += ' --top_k'
+            output_info += ' --k {}'.format(opts.k)
         if no_gold:
             test_data_dirs = map(lambda x: os.path.join(base_dir, x, '{}.txt'.format(data_type)), features)
             test_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {}'.format(*test_data_dirs)

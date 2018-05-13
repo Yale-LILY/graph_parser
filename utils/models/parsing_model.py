@@ -87,6 +87,10 @@ class Parsing_Model(Basic_Model):
                 feed[self.word_dropout_alpha] = np.ones(self.loader.word_embeddings.shape[0]) 
 #            loss, accuracy, predictions, weight = session.run([self.loss, self.accuracy, self.predictions, self.weight], feed_dict=feed)
             loss, predicted_arcs, predicted_rels, UAS, weight, arc_outputs, rel_scores = session.run([self.loss, self.predicted_arcs, self.predicted_rels, self.UAS, self.weight, self.arc_outputs, self.rel_scores], feed_dict=feed)
+            if self.test_opts is not None:
+                word_embeddings = session.run(self.embeddings)
+                with open(os.path.join(self.opts.model_dir, 'word_embeddings.pkl'), 'wb') as fout:
+                    pickle.dump(word_embeddings, fout)
             weight = weight.astype(bool)
             predicted_arcs_greedy = predicted_arcs[weight]
             predicted_rels_greedy = predicted_rels[weight]

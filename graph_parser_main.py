@@ -109,7 +109,8 @@ test_parser.add_argument("--content_test", dest="content_test", help="content da
 test_parser.add_argument("--metrics", nargs='+', dest="metrics", help="content data for testing")
 
 ## Jabberwocky
-test_parser.add_argument("--top_300", dest="top_300", help="remove top 300", action="store_true", default=False)
+test_parser.add_argument("--top_k", dest="top_k", help="Keep top 300", action="store_true", default=False)
+test_parser.add_argument("--k", dest="k", help="Keep k", type=int, default=0)
 
 opts = parser.parse_args()
 
@@ -155,4 +156,6 @@ if opts.mode == "test":
     ## additional features not present in old models
     if not hasattr(options, 'word_dropout'):
         setattr(options, 'word_dropout', 1.0)
+    if not hasattr(options, 'word_dropout_alpha'):
+        setattr(options, 'word_dropout_alpha', 0.0)
     run_model_test(options, opts)

@@ -12,6 +12,8 @@ def train_parser(config):
     base_dir = config['data']['base_dir']
     model_type = config['parser']['model_options']['model']
     features = ['sents', 'gold_pos', 'gold_pos', 'arcs', 'rels']
+    #print('Use UPOS')
+    #features = ['sents', 'gold_cpos', 'gold_cpos', 'arcs', 'rels']
     base_command = 'python graph_parser_main.py train --base_dir {}'.format(base_dir)
     train_data_dirs = map(lambda x: os.path.join(base_dir, x, 'train.txt'), features)
     train_data_info = ' --text_train {} --jk_train {} --tag_train {} --arc_train {} --rel_train {}'.format(*train_data_dirs)
