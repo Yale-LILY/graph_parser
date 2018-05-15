@@ -42,6 +42,7 @@ def test_parser(config, best_model, data_types, no_gold):
         else:
             features = ['sents', 'gold_pos', 'gold_pos', 'arcs', 'rels']
             #features = ['sents', 'gold_cpos', 'gold_cpos', 'arcs', 'rels']
+            #features = ['sents', 'predicted_pos', 'predicted_pos', 'arcs', 'rels']
 
     if no_gold:
         base_command = 'python graph_parser_main.py test'
@@ -103,5 +104,5 @@ if __name__ == '__main__':
     best_model = opts.model_name
     data_types = config_file['data']['split'].keys()
     #data_types = [x for x in data_types if x!='train']
-    data_types = ['test']
+    data_types = ['dev']
     test_parser(config_file, best_model, data_types, opts.no_gold)

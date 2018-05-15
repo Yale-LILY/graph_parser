@@ -42,6 +42,7 @@ def test_parser(config, best_model, data_types, no_gold):
         else:
             features = ['sents', 'gold_pos', 'gold_pos', 'arcs', 'rels']
             #features = ['sents', 'gold_cpos', 'gold_cpos', 'arcs', 'rels']
+            #features = ['sents', 'predicted_pos', 'predicted_pos', 'arcs', 'rels']
 
     if no_gold:
         base_command = 'python graph_parser_main.py test'

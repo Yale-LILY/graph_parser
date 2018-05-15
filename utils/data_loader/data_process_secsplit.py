@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import numpy as np
-from utils.data_loader.preprocessing import Tokenizer, pad_sequences, arcs2seq
-from utils.data_loader.mica.nbest import output_mica_nbest
+from utils.data_loader.preprocessing import Tokenizer, pad_sequences, arcs2seq, get_jw
 import os 
 import sys
 import pickle
@@ -18,6 +17,8 @@ class Dataset(object):
         path_to_jk = opts.jk_train
         path_to_arc = opts.arc_train
         path_to_rel = opts.rel_train
+        if opts.word_dropout_jw < 1.0:
+            path_to_jw = opts.jw_train
         if test_opts is None:
             path_to_text_test = opts.text_test
             path_to_tag_test = opts.tag_test
@@ -33,6 +34,7 @@ class Dataset(object):
             path_to_rel_test = test_opts.rel_test
             #path_to_punc_test = test_opts.punc_test
 
+        path_to_jw_test = path_to_arc_test## because you don't need it!
         self.inputs_train = {}
         self.inputs_test = {}
 
@@ -96,16 +98,10 @@ class Dataset(object):
             #all_count = 0
             for i in range(1, self.word_embeddings.shape[0]-2):## skipping -unseen- and <-root->
                 self.word_dropout_alpha_vec[i] = (tokenizer.word_counts[self.idx_to_word[i]])/(tokenizer.word_counts[self.idx_to_word[i]] + opts.word_dropout_alpha)
-                #expected_dp += (1-self.word_dropout_alpha_vec[i])*tokenizer.word_counts[self.idx_to_word[i]]
-                #all_count += tokenizer.word_counts[self.idx_to_word[i]]
-                ## 1-dropout rate because it's the keep prob
-                #out.write(' '.join([self.idx_to_word[i], str(tokenizer.word_counts[self.idx_to_word[i]])]))
-                #out.write('\n')
-            #print('Expected Dropout')
-            #print(expected_dp/all_count)
-            #print(all_count)
-
         ## indexing char files
+        if opts.word_dropout_jw < 1.0:
+            self.inputs_train['jw'] = get_jw(path_to_jw)
+            self.inputs_test['jw'] = get_jw(path_to_jw_test)
         if opts.chars_dim > 0:
             f_train = io.open(path_to_text, encoding='utf-8')
             texts = f_train.readlines()
@@ -211,6 +207,8 @@ class Dataset(object):
         ## padding the train inputs and test inputs
         self.inputs_train = {key: pad_sequences(x, key) for key, x in self.inputs_train.items()}
         self.inputs_train['arcs'] = np.hstack([np.zeros([self.inputs_train['arcs'].shape[0], 1]).astype(int), self.inputs_train['arcs']])
+        if opts.word_dropout_jw < 1.0:
+            self.inputs_train['jw'] = np.hstack([np.zeros([self.inputs_train['jw'].shape[0], 1]).astype(int), self.inputs_train['jw']])
         ## dummy parents for the roots
         random.seed(0)
         perm = np.arange(self.nb_train_samples)
@@ -220,6 +218,8 @@ class Dataset(object):
         self.inputs_test = {key: pad_sequences(x, key) for key, x in self.inputs_test.items()}
         ## dummy parents for the roots
         self.inputs_test['arcs'] = np.hstack([np.zeros([self.inputs_test['arcs'].shape[0], 1]).astype(int), self.inputs_test['arcs']])
+        if opts.word_dropout_jw < 1.0:
+            self.inputs_test['jw'] = np.hstack([np.zeros([self.inputs_test['jw'].shape[0], 1]).astype(int), self.inputs_test['jw']])
 
         ## padding ends
 
@@ -322,8 +322,6 @@ class Dataset(object):
                 fwrite.write(u' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
                 fwrite.write(u'\n')
                 stag_idx += sents_lengths[sent_idx]
-    def output_probs(self, probs):
-        output_mica_nbest(probs, self.idx_to_tag)
 
     def output_weight(self, stag_embeddings):
         filename = 'stag_embeddings.txt'

@@ -445,3 +445,11 @@ def arcs2seq(texts):
                 vect.append(0) ## dummy for no_gold
         seq.append(vect)
     return seq
+def get_jw(filename):
+    seq = []
+    with open(filename) as fin:
+        for line in fin:
+            vect = line.split()
+            vect = [int(x=='This_is_Jabberwocky') for x in vect]
+            seq.append(vect)
+    return seq

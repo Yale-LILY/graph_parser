@@ -14,6 +14,7 @@ train_parser.add_argument("--model", dest="model", help="model", default='Parsin
 train_parser.add_argument("--base_dir", dest="base_dir", help="base directory for data")
 train_parser.add_argument("--text_train", dest="text_train", help="text data for training")
 train_parser.add_argument("--jk_train", dest="jk_train", help="jk data for training")
+train_parser.add_argument("--jw_train", dest="jw_train", help="jw data for training")
 train_parser.add_argument("--tag_train", dest="tag_train", help="tag data for training")
 train_parser.add_argument("--arc_train", dest="arc_train", help="arc data for training")
 train_parser.add_argument("--rel_train", dest="rel_train", help="rel data for training")
@@ -37,6 +38,7 @@ train_parser.add_argument("--dropout_p", dest="dropout_p", help="keep fraction",
 train_parser.add_argument("--word_embeddings_file", dest="word_embeddings_file", help="embeddings file", default = 'glovevector/glove.6B.100d.txt')
 train_parser.add_argument("--word_dropout", dest="word_dropout", help="keep fraction", type=float, default = 1.0)
 train_parser.add_argument("--word_dropout_alpha", dest="word_dropout_alpha", help="keep fraction", type=float, default = -1.0)
+train_parser.add_argument("--word_dropout_jw", dest="word_dropout_jw", help="keep fraction", type=float, default = 1.0)
 ## minus for not doing word dropout with frequency
 
 ### MLP config
@@ -134,6 +136,8 @@ if opts.mode == "train":
         opts.model_dir += '-wd{}'.format(opts.word_dropout)
     if opts.word_dropout_alpha > 0.0:
         opts.model_dir += '-wa{}'.format(opts.word_dropout_alpha)
+    if opts.word_dropout_jw < 1.0:
+        opts.model_dir += '-wj{}'.format(opts.word_dropout_jw)
     print('Model Dirctory: {}'.format(opts.model_dir))
     if not os.path.isdir(opts.model_dir):
         os.makedirs(opts.model_dir)
@@ -158,4 +162,6 @@ if opts.mode == "test":
         setattr(options, 'word_dropout', 1.0)
     if not hasattr(options, 'word_dropout_alpha'):
         setattr(options, 'word_dropout_alpha', 0.0)
+    if not hasattr(options, 'word_dropout_jw'):
+        setattr(options, 'word_dropout_jw', 1.0)
     run_model_test(options, opts)

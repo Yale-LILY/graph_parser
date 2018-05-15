@@ -30,6 +30,9 @@ class Basic_Model(object):
         self.word_dropout = tf.placeholder(tf.float32)
         if self.opts.word_dropout_alpha > 0:
             self.word_dropout_alpha = tf.placeholder(tf.float32, shape = [self.loader.word_embeddings.shape[0]])
+        if self.opts.word_dropout_jw < 1.0:
+            self.word_dropout_jw = tf.placeholder(tf.float32)
+            self.inputs_placeholder_dict['jw'] = tf.placeholder(tf.int32, shape = [None,None])
 
     def add_word_embedding(self): 
         with tf.device('/cpu:0'):
@@ -39,6 +42,7 @@ class Basic_Model(object):
                 self.embeddings = embedding
                 if self.test_opts.top_k:
                     zero_out = np.zeros(self.loader.word_embeddings.shape)
+                    zero_out[-2:] = 1.0 ## Do not remove ROOT
                     if self.test_opts.k != 0:
                         zero_out[1:1+self.test_opts.k, ] = 1.0 ## skip zero padding
                         print('Keep top {}'.format(self.test_opts.k))
@@ -50,6 +54,11 @@ class Basic_Model(object):
                 embedding = self.add_word_dropout_alpha(embedding)
 
             inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_dict['words']) ## [batch_size, seq_len, embedding_dim]
+            if self.opts.word_dropout_jw < 1.0:
+                input_shape = tf.shape(inputs)
+                print('Syntactic Dropout')
+                dropout_mat = tf.nn.dropout(tf.ones([input_shape[0], input_shape[1]]), keep_prob=self.word_dropout_jw)*self.word_dropout_jw*tf.cast(self.inputs_placeholder_dict['jw'], tf.float32) + (1.0-tf.cast(self.inputs_placeholder_dict['jw'], tf.float32))
+                inputs = inputs*tf.expand_dims(dropout_mat, -1)
             inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, embedding_dim]
         return inputs 
 

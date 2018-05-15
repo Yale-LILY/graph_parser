@@ -11,7 +11,7 @@ def get_scores(test_opts):
     ## verbose
     command += ' -v'
     ## add weight
-    command += ' --weight evaluation_script/weights.clas'
+    #command += ' --weight evaluation_script/weights.clas'
     output = subprocess.check_output(command, shell=True)
     lines = output.decode('utf-8').split('\n')
     scores = {}
