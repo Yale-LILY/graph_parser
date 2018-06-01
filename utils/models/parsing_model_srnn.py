@@ -11,7 +11,7 @@ import os
 import sys
 
 
-class Parsing_Model(Basic_Model):
+class Parsing_Model_SRNN(Basic_Model):
     def __init__(self, opts, test_opts=None):
        
         self.opts = opts
@@ -40,9 +40,9 @@ class Parsing_Model(Basic_Model):
         ### because the backward path starts with zero pads.
         self.weight = tf.cast(tf.not_equal(self.inputs_placeholder_dict['words'], tf.zeros(inputs_shape, tf.int32)), tf.float32) ## [batch_size, seq_len]
         for i in range(self.opts.num_layers):
-            forward_outputs_tensor = self.add_dropout(self.add_lstm(inputs_tensor, i, 'Forward'), self.keep_prob) ## [seq_len, batch_size, units]
+            forward_outputs_tensor = self.add_dropout(self.add_srnn(inputs_tensor, i, 'Forward'), self.keep_prob) ## [seq_len, batch_size, units]
             if self.opts.bi:
-                backward_outputs_tensor = self.add_dropout(self.add_lstm(tf.reverse(inputs_tensor, [0]), i, 'Backward', True), self.keep_prob) ## [seq_len, batch_size, units]
+                backward_outputs_tensor = self.add_dropout(self.add_srnn(tf.reverse(inputs_tensor, [0]), i, 'Backward', True), self.keep_prob) ## [seq_len, batch_size, units]
                 inputs_tensor = tf.concat([forward_outputs_tensor, tf.reverse(backward_outputs_tensor, [0])], 2)
             else:
                 inputs_tensor = forward_outputs_tensor

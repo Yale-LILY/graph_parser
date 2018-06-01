@@ -169,6 +169,8 @@ class Dataset(object):
         f_train.close()
         tokenizer = Tokenizer(lower=False)
         tokenizer.fit_on_texts(texts, zero_padding=False)
+        #with open('rel_tokenizer.pkl', 'wb') as fout:
+        #    pickle.dump(tokenizer,fout)
         self.rel_index = tokenizer.word_index
         self.nb_rels = len(self.rel_index)
         self.idx_to_rel = invert_dict(self.rel_index)

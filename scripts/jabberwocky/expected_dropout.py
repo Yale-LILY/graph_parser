@@ -20,7 +20,8 @@ def counts2Edp(counts, alpha):
 if __name__ == '__main__':
     count_file = '/home/lily/jk964/models/conll2018-task/graph_parser/scripts/jabberwocky/word_counts.txt'
     wcounts, counts = read_wcounts(count_file)
-    for alpha in range(2500, 2550):
+    #for alpha in range(2500, 2550):
+    for alpha in [0.25]:
         Edp = counts2Edp(counts, alpha)
         print(alpha)
         print(Edp)

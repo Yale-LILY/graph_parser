@@ -1,4 +1,3 @@
-from __future__ import print_function
 from utils.data_loader.data_process_secsplit import Dataset
 from utils.decoders.predict import predict_arcs_rels
 from utils.converters_tools.converters import output_conllu
@@ -23,7 +22,10 @@ class Parsing_Model_Highway(Basic_Model):
         self.add_placeholders()
         self.inputs_dim = self.opts.embedding_dim + self.opts.jk_dim + self.opts.stag_dim + self.opts.nb_filters
         self.outputs_dim = (1+self.opts.bi)*self.opts.units
-        inputs_list = [self.add_word_embedding()]
+        if self.opts.embedding_dim > 0:
+            inputs_list = [self.add_word_embedding()]
+        else:
+            inputs_list = []
         if self.opts.jk_dim:
             inputs_list.append(self.add_jackknife_embedding())
         if self.opts.stag_dim > 0:
@@ -64,6 +66,11 @@ class Parsing_Model_Highway(Basic_Model):
             feed[self.hidden_prob] = self.opts.hidden_p
             feed[self.input_keep_prob] = self.opts.input_dp
             feed[self.mlp_prob] = self.opts.mlp_prob
+            feed[self.word_dropout] = self.opts.word_dropout
+            if self.opts.word_dropout_alpha > 0:
+                feed[self.word_dropout_alpha] = self.loader.word_dropout_alpha_vec
+            if self.opts.word_dropout_jw < 1.0:
+                feed[self.word_dropout_jw] = self.opts.word_dropout_jw
             train_op = self.train_op
             _, loss, UAS, rel_acc = session.run([train_op, self.loss, self.UAS, self.rel_acc], feed_dict=feed)
             return loss, UAS, rel_acc
@@ -76,8 +83,24 @@ class Parsing_Model_Highway(Basic_Model):
             feed[self.hidden_prob] = 1.0
             feed[self.input_keep_prob] = 1.0
             feed[self.mlp_prob] = 1.0
+            feed[self.word_dropout] = 1.0
+            if self.opts.word_dropout_alpha > 0:
+                feed[self.word_dropout_alpha] = np.ones(self.loader.word_embeddings.shape[0]) 
+            if self.opts.word_dropout_jw < 1.0:
+                feed[self.word_dropout_jw] = 1.0
 #            loss, accuracy, predictions, weight = session.run([self.loss, self.accuracy, self.predictions, self.weight], feed_dict=feed)
             loss, predicted_arcs, predicted_rels, UAS, weight, arc_outputs, rel_scores = session.run([self.loss, self.predicted_arcs, self.predicted_rels, self.UAS, self.weight, self.arc_outputs, self.rel_scores], feed_dict=feed)
+            if self.test_opts is not None:
+                if self.opts.embedding_dim > 0:
+                    word_embeddings = session.run(self.embeddings)
+                    with open(os.path.join(self.opts.model_dir, 'word_embeddings.pkl'), 'wb') as fout:
+                        pickle.dump(word_embeddings, fout)
+                pos_embeddings = session.run(self.pos_embeddings)
+                with open(os.path.join(self.opts.model_dir, 'pos_embeddings.pkl'), 'wb') as fout:
+                    pickle.dump(pos_embeddings, fout)
+                weights = session.run(self.input_weights, feed_dict=feed)
+                with open(os.path.join(self.opts.model_dir, 'pos_weight.pkl'), 'wb') as fout:
+                    pickle.dump(weights, fout)
             weight = weight.astype(bool)
             predicted_arcs_greedy = predicted_arcs[weight]
             predicted_rels_greedy = predicted_rels[weight]
@@ -125,7 +148,10 @@ class Parsing_Model_Highway(Basic_Model):
                 #self.loader.output_arcs(predictions['arcs_greedy'], self.test_opts.predicted_arcs_file_greedy)
                 #self.loader.output_rels(predictions['rels_greedy'], self.test_opts.predicted_rels_file_greedy)
                 output_conllu(self.test_opts)
-                scores = get_scores(self.test_opts)
+                if self.test_opts.get_accuracy:
+                    scores = get_scores(self.test_opts)
+                else:
+                    scores = {} ## We don't have gold conllu to get scores.
                 if self.test_opts.get_weight:
                     stag_embeddings = session.run(self.stag_embeddings)
                     self.loader.output_weight(stag_embeddings)

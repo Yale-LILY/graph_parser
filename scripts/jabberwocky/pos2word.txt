@@ -1,0 +1,46 @@
+IN of in for on that at by from with as than about if after because into over under while since through before against between during like among out until up without although whether though despite within around via so down above toward below off ago along per unless near next
+DT the a an this some that all any no those these both another each every either half neither many la nary them del
+NNP mr. u.s. corp. new inc. co. york exchange friday japan house bank american national bush san california oct. stock congress federal september treasury ual international monday wall street president group august board john francisco london nov. inc dow ms. department jones senate ford texas first robert general chicago washington july
+CD million billion one two three 1 10 30 15 8 1988 five 20 50 2 1989 four 1990 six 1/2 1987 100 25 12 11 3 3/4 5 nine 40 13 4 1/4 9 31 500 6 7 60 1986 16 18 14 5/8 3/8 17 200 7/8 seven 1/8
+NN % company year market share stock trading business president government quarter time price week yesterday group interest industry money rate unit investment month state revenue chairman profit income program bank part plan debt firm sale issue tax way vice growth loss executive day bid cash officer director concern computer case
+`` `` ` non-``
+'' '' '
+POS 's '
+-LRB- ( -lcb-
+VBN been expected made based used sold compared priced named taken called held given paid known proposed ended estimated offered increased set seen done filed scheduled led reached reported involved considered become agreed announced related owned completed required quoted had received designed left issued created lost built disclosed valued said acquired
+NNS years shares sales companies cents people prices investors months bonds earnings stocks officials analysts days rates products funds securities operations markets issues banks traders costs assets loans problems results losses futures firms businesses weeks points plans services employees executives others orders members workers notes customers changes terms yen times dollars
+VBP are have do say 're think want 've expect include 'm believe make need know see get seem remain continue am show buy feel sell go take use plan look tend hope give argue appear suggest fear find pay offer come contend try agree hold provide insist account call note
+, , an 2 underwriters section
+CC and but or & nor either plus yet both neither less so whether minus times vs. 'n' v. et 'n and/or versus
+-RRB- ) -rcb-
+VBD said was were had rose did fell reported closed added declined made took agreed came began ended dropped announced told got called increased went noted posted sold found gained received included asked jumped bought became showed helped wanted started continued lost gave earned failed filed used paid resigned thought put
+RB n't also not now only as even so still just up about well then however very down ago too much back already far here recently nearly yet almost currently often again never instead later soon once meanwhile rather there probably previously earlier slightly away ever especially really particularly long always
+TO to na
+. . ? !
+VBZ is has says 's does expects makes plans remains includes wants adds seems owns continues comes means calls believes holds provides takes appears gets goes needs hopes represents gives reflects faces shows thinks follows succeeds notes operates puts offers runs sells suggests intends works looks contends claims uses knows sees
+NNPS securities airlines americans brothers democrats industries systems motors associates services communications soviets republicans japanese machines holdings investors markets partners manufacturers states resources sciences workers airways products stores futures bankers contras savings germans options treasurys enterprises cowboys technologies foods gardens brands philippines statistics messrs. texans cds dynamics europeans giants lines sports
+PRP it he they we i you them she him us itself me themselves himself her one ourselves myself herself yourself 's theirs mine 'em s ours ya thyself his 't- y'all t' oneself
+PRP$ its his their our her my your
+VB be have make sell get buy take do pay go continue yield help see give say keep provide come raise reduce use increase know put comment become find think acquire work build begin meet cut close allow want remain try offer receive produce seek consider move report let change look
+JJ other new last such many first major federal next financial big recent net several own much japanese few economic foreign common third good current chief high due real same past small former annual second corporate political large strong old late third-quarter public early senior certain american little general likely fiscal
+MD will would could can may should might must wo ca 'll 'd ought shall need mighta dare
+VBG including being according going making trying selling buying operating getting using looking following having holding saying doing working taking seeking growing coming trading leading increasing continuing rising running paying adding offering reflecting beginning considering moving existing giving raising building putting declining waiting developing remaining involving pending managing ending falling talking
+RBR more earlier less further higher lower better later longer faster closer harder sooner worse easier deeper farther smarter in fewer duller about gloomier quicker wider heavier cheaper straighter stronger tougher louder less-perfectly down than tighter healthier slower trimmed rosier leaner bigger
+: -- : ; ... - '
+WP who what whom whoever
+WDT which that whatever what whichever .what
+JJR more higher lower less better smaller greater earlier larger bigger fewer stronger older worse weaker longer easier younger broader slower cheaper tougher wider harder closer safer softer deeper faster newer firmer tighter lesser lighter riskier further narrower cleaner shorter poorer richer sharper heavier simpler thinner wealthier thicker longer-term quicker stricter
+PDT all such half both quite many nary
+RBS most best least hardest worst highest
+WRB when how where why whenever wherever whereby however
+JJS most least largest latest biggest best highest worst greatest lowest strongest hottest smallest earliest busiest youngest newest poorest heaviest cheapest weakest oldest closest fastest hardest richest longest nearest broadest sharpest slowest fullest slightest brightest quickest lightest finest smartest best-known fastest-growing tallest thinnest stiffest bitterest less toughest deepest narrowest savviest easiest
+$ $ c$ us$ a$ m$ hk$ s$ nz$ c
+RP up out off down in on over back away around through along about by together aside across behind forward apart for with open upon of ahead forth yet howard before at even whole
+FW de vs. perestroika pro glasnost bono a naczelnik etc la des per forma del etc. kanji facto machikin di maquiladoras i.e. viva in markka vis voir dire dolce ad hoc avec montgolfiere les sportif rigueur pilote belle trop rapidement oeufs neige dei deutsche seisho samurai karaoke trompe l'oeil en masse
+EX there
+SYM * a b ** c f ffr e x = & z d r @
+# #
+LS 1 2 3 first second 4 third d e f r x a b c
+UH yes no well oh quack indeed hello say uh yeah aw ok alas please oohs ahs wham bam heck uh-uh egad man boy amen damn ah oink true welcome nope howdy okay wow whoopee zounds shucks
+WP$ whose
+QUANT_MOD between from

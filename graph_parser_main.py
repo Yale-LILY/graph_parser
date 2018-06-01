@@ -138,6 +138,8 @@ if opts.mode == "train":
         opts.model_dir += '-wa{}'.format(opts.word_dropout_alpha)
     if opts.word_dropout_jw < 1.0:
         opts.model_dir += '-wj{}'.format(opts.word_dropout_jw)
+    if 'glovevector' == opts.word_embeddings_file[:11]:
+        opts.model_dir += '-glove'
     print('Model Dirctory: {}'.format(opts.model_dir))
     if not os.path.isdir(opts.model_dir):
         os.makedirs(opts.model_dir)

@@ -76,8 +76,8 @@ def regress(x, y):
 #
 
 if __name__ == '__main__':
-    path_to_vocab = 'scripts/jabberwocky/pos_vocab_noties.txt'
-    path_to_pos_y = 'scripts/jabberwocky/pos_y_noties.txt'  
+    path_to_vocab = 'scripts/jabberwocky/pos_vocab_noties_top10.txt'
+    path_to_pos_y = 'scripts/jabberwocky/pos_y_noties_top10.txt'  
     path_to_glove = 'scripts/jabberwocky/pos_glove.pkl' 
     path_to_glove_vocab = 'scripts/jabberwocky/pos_vocab.txt' 
     #path_to_word_embeddings = '/data/lily/jk964/models/WSJ/Parsing_Model/1-3-400-0.67-0.67-1-500-100-0-25-100-0.67-0-0-3-0.001-0-wd0.2/word_embeddings.pkl'
