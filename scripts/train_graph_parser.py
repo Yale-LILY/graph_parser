@@ -17,7 +17,7 @@ def train_parser(config):
     base_command = 'python graph_parser_main.py train --base_dir {}'.format(base_dir)
     train_data_dirs = map(lambda x: os.path.join(base_dir, x, 'train.txt'), features)
     train_data_info = ' --text_train {} --jk_train {} --tag_train {} --arc_train {} --rel_train {}'.format(*train_data_dirs)
-    train_data_info = ' --jw_train {}'.format(os.path.join(base_dir, 'syntactic_jw', 'train.txt'))
+    #train_data_info = ' --jw_train {}'.format(os.path.join(base_dir, 'syntactic_jw', 'train.txt'))
     dev_data_dirs = map(lambda x: os.path.join(base_dir, x, 'dev.txt'), features)
     dev_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {}'.format(*dev_data_dirs)
     dev_data_info += ' --conllu_test {}'.format(os.path.join(base_dir, 'conllu', 'dev.conllu'))

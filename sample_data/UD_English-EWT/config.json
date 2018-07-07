@@ -1,0 +1,44 @@
+{
+"data":{
+        "base_dir": "/home/lily/jk964/models/conll2018-task/graph_parser/sample_data/UD_English-EWT/",
+        "split": {
+                  "train": "conllu/train.conllu",
+                  "dev": "conllu/dev.conllu",
+                  "test": "conllu/test.conllu"
+                 }
+       },
+"parser":{
+          "input": {
+                    "embedding_dim": "100", 
+                    "jk_dim": "25",
+                    "stag_dim": "0",
+                    "chars_dim": "0",
+                    "nb_filters": "0"
+                   },
+          "lstm": {
+                   "units": "400", 
+                   "num_layers": "3",
+                   "input_p": "0.67",
+                   "word_dropout": "1.0",
+                   "word_dropout_alpha": "1.00",
+                   "hidden_p": "0.67",
+                   "dropout_p": "0.67"
+                  },
+          "mlp": {
+                  "arc_mlp_units": "500", 
+                  "rel_mlp_units": "100", 
+                  "mlp_prob": "0.67", 
+                  "mlp_num_layers": "1"
+                 },
+          "scores": {
+                  "metrics": "LAS UAS"
+                    },
+          "model_options": {
+                  "model": "Parsing_Model",
+                  "lrate": "0.001",
+                  "word_embeddings_file": "dummy_embeddings.txt",
+                  "max_epochs": 1,
+                  "seed": "0"
+                    }
+         }
+}
