@@ -14,6 +14,7 @@ import time
 import pickle
 import tensorflow as tf
 from tensorflow.contrib.seq2seq import sequence_loss
+import tensorflow_hub as hub
 
 
 class Basic_Model(object):
@@ -22,6 +23,8 @@ class Basic_Model(object):
         for feature in self.features:
             if feature == 'chars':
                 self.inputs_placeholder_dict[feature] = tf.placeholder(tf.int32, shape = [None, None, None])
+            elif feature == 'elmo':
+                self.inputs_placeholder_dict[feature] = tf.placeholder(tf.string, shape = [None, None])
             else:
                 self.inputs_placeholder_dict[feature] = tf.placeholder(tf.int32, shape = [None, None])
 
@@ -83,6 +86,24 @@ class Basic_Model(object):
             inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_dict['stags']) ## [batch_size, seq_len, embedding_dim]
             inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, embedding_dim]
         self.stag_embeddings = embedding
+        return inputs 
+
+    def add_elmo(self):
+        elmo = hub.Module("https://tfhub.dev/google/elmo/2", trainable=True)
+        inputs_shape = tf.shape(self.inputs_placeholder_dict['words'])
+        tokens_length = tf.cast(tf.not_equal(self.inputs_placeholder_dict['words'], tf.zeros(inputs_shape, tf.int32)), tf.float32) # [batch_size, seq_len]
+        tokens_length = tf.cast(tf.reduce_sum(tokens_length, axis=1), tf.int32) # [batch_size]
+        inputs = elmo(
+            inputs={
+                    "tokens": self.inputs_placeholder_dict['elmo'],
+                    "sequence_len": tokens_length
+                    },
+                    signature="tokens",
+                    as_dict=True)["elmo"]
+        inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, embedding_dim]
+        print(inputs)
+            #print('Multiply POS vecs by 5.0')
+            #inputs = inputs*5.0
         return inputs 
 
     def add_char_embedding(self):
@@ -225,6 +246,8 @@ class Basic_Model(object):
             self.features.append('stags')
         if self.opts.chars_dim > 0:
             self.features.append('chars')
+        if self.opts.elmo > 0:
+            self.features.append('elmo')
 
     def add_biaffine(self, inputs):
         ## inputs [seq_len, batch_size, units]

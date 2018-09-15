@@ -20,12 +20,13 @@ class Parsing_Model(Basic_Model):
         self.batch_size = 100
         self.get_features()
         self.add_placeholders()
-        self.inputs_dim = self.opts.embedding_dim + self.opts.jk_dim + self.opts.stag_dim + self.opts.nb_filters
+        self.inputs_dim = self.opts.embedding_dim + self.opts.jk_dim + self.opts.stag_dim + self.opts.nb_filters + self.opts.elmo
         self.outputs_dim = (1+self.opts.bi)*self.opts.units
+        inputs_list = []
         if self.opts.embedding_dim > 0:
-            inputs_list = [self.add_word_embedding()]
-        else:
-            inputs_list = []
+            inputs_list.append(self.add_word_embedding())
+        if self.opts.elmo > 0:
+            inputs_list.append(self.add_elmo())
         if self.opts.jk_dim:
             inputs_list.append(self.add_jackknife_embedding())
         if self.opts.stag_dim > 0:

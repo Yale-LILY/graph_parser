@@ -54,7 +54,10 @@ class Dataset(object):
 
         # lookup the glove word embeddings
         # need to reserve indices for testing file. 
-        glove_size = opts.embedding_dim
+        if opts.embedding_dim > 0:
+            glove_size = opts.embedding_dim
+        else:
+            glove_size = 100
         self.embeddings_index = {}
         print('Indexing word vectors.')
         f = io.open(opts.word_embeddings_file, encoding='utf-8')
@@ -89,6 +92,11 @@ class Dataset(object):
         #print(map(lambda x: self.idx_to_word[x], text_sequences[self.nb_train_samples]))
         self.inputs_train['words'] = text_sequences[:self.nb_train_samples]
         self.inputs_test['words'] = text_sequences[self.nb_train_samples:]
+        if opts.elmo > 0:
+            text_sequences_elmo = tokenizer.texts_to_sequences(texts, elmo=True)
+            self.inputs_train['elmo'] = text_sequences_elmo[:self.nb_train_samples]
+            self.inputs_test['elmo'] = text_sequences_elmo[self.nb_train_samples:]
+            #print(self.inputs_test['elmo'][:2])
         ## indexing sents files ends
         ## prepare word dropout alpha matrix
         #out = open('word_counts.txt', 'wt')
@@ -218,6 +226,7 @@ class Dataset(object):
         self.inputs_train = {key: x[perm] for key, x in self.inputs_train.items()}
 
         self.inputs_test = {key: pad_sequences(x, key) for key, x in self.inputs_test.items()}
+        #print(self.inputs_test['elmo'][:2])
         ## dummy parents for the roots
         self.inputs_test['arcs'] = np.hstack([np.zeros([self.inputs_test['arcs'].shape[0], 1]).astype(int), self.inputs_test['arcs']])
         if opts.word_dropout_jw < 1.0:

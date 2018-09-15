@@ -61,6 +61,9 @@ def pad_sequences(sequences, feature, window = False, dtype='int32',
         x: numpy array with dimensions (number_of_sequences, maxlen)
     '''
 
+    if feature == 'elmo':
+        dtype=str
+
     if feature == 'chars':
         maxlen=None
         lengths = [len(s) for s in sequences]
@@ -255,18 +258,18 @@ class Tokenizer(object):
                 nbest_stags_sent.append(tag_indecies)
         return output_data
 
-    def texts_to_sequences(self, texts, non_split=False):
+    def texts_to_sequences(self, texts, non_split=False, elmo=False):
         '''Transforms each text in texts in a sequence of integers.
         Only top "nb_words" most frequent words will be taken into account.
         Only words known by the tokenizer will be taken into account.
         Returns a list of sequences.
         '''
         res = []
-        for vect in self.texts_to_sequences_generator(texts, non_split):
+        for vect in self.texts_to_sequences_generator(texts, non_split, elmo=elmo):
             res.append(vect)
         return res
 
-    def texts_to_sequences_generator(self, texts, non_split):
+    def texts_to_sequences_generator(self, texts, non_split, elmo):
         '''Transforms each text in texts in a sequence of integers.
         Only top "nb_words" most frequent words will be taken into account.
         Only words known by the tokenizer will be taken into account.
@@ -286,6 +289,16 @@ class Tokenizer(object):
                         vect.append(i)
                     vects.append(vect)
                 yield vects
+        elif elmo:
+            for text in texts:
+                seq = text if self.char_level or non_split else text_to_word_sequence(text, self.filters, self.lower, self.split)
+                if self.root:
+                    vect = ['<-root->']
+                else:
+                    vect = []
+                for w in seq:
+                    vect.append(w)
+                yield vect
         else:
             for text in texts:
                 seq = text if self.char_level or non_split else text_to_word_sequence(text, self.filters, self.lower, self.split)

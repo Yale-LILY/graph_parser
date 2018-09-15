@@ -36,6 +36,7 @@ train_parser.add_argument("--units", dest="units", help="hidden units size", typ
 train_parser.add_argument("--hidden_p", dest="hidden_p", help="keep fraction of hidden units", type=float, default = 1.0)
 train_parser.add_argument("--dropout_p", dest="dropout_p", help="keep fraction", type=float, default = 1.0)
 train_parser.add_argument("--word_embeddings_file", dest="word_embeddings_file", help="embeddings file", default = 'glovevector/glove.6B.100d.txt')
+train_parser.add_argument("--elmo",  help="elmo", type=int, default=1)
 train_parser.add_argument("--word_dropout", dest="word_dropout", help="keep fraction", type=float, default = 1.0)
 train_parser.add_argument("--word_dropout_alpha", dest="word_dropout_alpha", help="keep fraction", type=float, default = -1.0)
 train_parser.add_argument("--word_dropout_jw", dest="word_dropout_jw", help="keep fraction", type=float, default = 1.0)
@@ -129,7 +130,7 @@ if opts.mode == "train":
 #    opts.jk_test = 'sample_data/predicted_pos/dev.txt'
 #    opts.arc_test = 'sample_data/arcs/dev.txt'
 #    opts.rel_test = 'sample_data/rels/dev.txt'
-    params = ['bi', 'num_layers', 'units', 'hidden_p', 'dropout_p', 'mlp_num_layers', 'arc_mlp_units', 'rel_mlp_units', 'stag_dim', 'jk_dim', 'embedding_dim', 'input_dp', 'chars_dim', 'nb_filters', 'chars_window_size', 'lrate', 'seed']
+    params = ['bi', 'num_layers', 'units', 'hidden_p', 'dropout_p', 'mlp_num_layers', 'arc_mlp_units', 'rel_mlp_units', 'stag_dim', 'jk_dim', 'embedding_dim', 'input_dp', 'chars_dim', 'nb_filters', 'chars_window_size', 'lrate', 'seed', 'elmo']
     model_dir = '{}/'.format(opts.model) + '-'.join(map(lambda x: str(getattr(opts, x)), params))
     opts.model_dir = os.path.join(opts.base_dir, model_dir)
     if opts.word_dropout < 1.0:
@@ -138,8 +139,8 @@ if opts.mode == "train":
         opts.model_dir += '-wa{}'.format(opts.word_dropout_alpha)
     if opts.word_dropout_jw < 1.0:
         opts.model_dir += '-wj{}'.format(opts.word_dropout_jw)
-    if 'glovevector' == opts.word_embeddings_file[:11]:
-        opts.model_dir += '-glove'
+    #if 'glovevector' == opts.word_embeddings_file[:11]:
+    #    opts.model_dir += '-glove'
     print('Model Dirctory: {}'.format(opts.model_dir))
     if not os.path.isdir(opts.model_dir):
         os.makedirs(opts.model_dir)
