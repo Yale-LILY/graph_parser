@@ -17,15 +17,16 @@ class Parsing_Model_Highway(Basic_Model):
         self.opts = opts
         self.test_opts = test_opts
         self.loader = Dataset(opts, test_opts)
-        self.batch_size = 100
+        self.batch_size = 50
         self.get_features()
         self.add_placeholders()
-        self.inputs_dim = self.opts.embedding_dim + self.opts.jk_dim + self.opts.stag_dim + self.opts.nb_filters
+        self.inputs_dim = self.opts.embedding_dim + self.opts.jk_dim + self.opts.stag_dim + self.opts.nb_filters + self.opts.elmo
         self.outputs_dim = (1+self.opts.bi)*self.opts.units
+        inputs_list = []
         if self.opts.embedding_dim > 0:
-            inputs_list = [self.add_word_embedding()]
-        else:
-            inputs_list = []
+            inputs_list.append(self.add_word_embedding())
+        if self.opts.elmo > 0:
+            inputs_list.append(self.add_elmo())
         if self.opts.jk_dim:
             inputs_list.append(self.add_jackknife_embedding())
         if self.opts.stag_dim > 0:
@@ -95,12 +96,12 @@ class Parsing_Model_Highway(Basic_Model):
                     word_embeddings = session.run(self.embeddings)
                     with open(os.path.join(self.opts.model_dir, 'word_embeddings.pkl'), 'wb') as fout:
                         pickle.dump(word_embeddings, fout)
-                pos_embeddings = session.run(self.pos_embeddings)
-                with open(os.path.join(self.opts.model_dir, 'pos_embeddings.pkl'), 'wb') as fout:
-                    pickle.dump(pos_embeddings, fout)
+                #pos_embeddings = session.run(self.pos_embeddings)
+                #with open(os.path.join(self.opts.model_dir, 'pos_embeddings.pkl'), 'wb') as fout:
+                #    pickle.dump(pos_embeddings, fout)
                 weights = session.run(self.input_weights, feed_dict=feed)
-                with open(os.path.join(self.opts.model_dir, 'pos_weight.pkl'), 'wb') as fout:
-                    pickle.dump(weights, fout)
+                #with open(os.path.join(self.opts.model_dir, 'pos_weight.pkl'), 'wb') as fout:
+                #    pickle.dump(weights, fout)
             weight = weight.astype(bool)
             predicted_arcs_greedy = predicted_arcs[weight]
             predicted_rels_greedy = predicted_rels[weight]

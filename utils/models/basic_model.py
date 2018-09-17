@@ -240,9 +240,9 @@ class Basic_Model(object):
 
     def get_features(self):
         self.features = ['words', 'arcs', 'rels']
-        if self.opts.jk_dim > 0:
+        if self.opts.jk_dim > 0 or self.opts.model in ['Parsing_Model_Joint_Both']:
             self.features.append('jk')
-        if self.opts.stag_dim > 0:
+        if self.opts.stag_dim > 0 or self.opts.model in ['Parsing_Model_Joint', 'Parsing_Model_Joint_Both']:
             self.features.append('stags')
         if self.opts.chars_dim > 0:
             self.features.append('chars')

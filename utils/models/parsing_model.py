@@ -96,9 +96,9 @@ class Parsing_Model(Basic_Model):
                     word_embeddings = session.run(self.embeddings)
                     with open(os.path.join(self.opts.model_dir, 'word_embeddings.pkl'), 'wb') as fout:
                         pickle.dump(word_embeddings, fout)
-                pos_embeddings = session.run(self.pos_embeddings)
-                with open(os.path.join(self.opts.model_dir, 'pos_embeddings.pkl'), 'wb') as fout:
-                    pickle.dump(pos_embeddings, fout)
+                #pos_embeddings = session.run(self.pos_embeddings)
+                #with open(os.path.join(self.opts.model_dir, 'pos_embeddings.pkl'), 'wb') as fout:
+                #    pickle.dump(pos_embeddings, fout)
                 weights = session.run(self.input_weights, feed_dict=feed)
                 with open(os.path.join(self.opts.model_dir, 'pos_weight.pkl'), 'wb') as fout:
                     pickle.dump(weights, fout)

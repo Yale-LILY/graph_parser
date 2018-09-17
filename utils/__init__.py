@@ -4,4 +4,4 @@ from utils.models.parsing_model_gru import Parsing_Model_GRU
 from utils.models.parsing_model_srnn import Parsing_Model_SRNN
 #from parsing_model_joint import Parsing_Model_Joint
 #from parsing_model_shuffle import Parsing_Model_Shuffle
-#from parsing_model_joint_both import Parsing_Model_Joint_Both
+from utils.models.parsing_model_joint_both import Parsing_Model_Joint_Both
