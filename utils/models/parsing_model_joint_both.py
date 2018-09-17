@@ -8,6 +8,8 @@ from utils.equations.mlp import get_mlp_weights, mlp
 from utils.equations.arc import get_arc_weights, arc_equation
 from utils.equations.rel import get_rel_weights, rel_equation
 from utils.equations.joint import get_joint_weights, joint_equation
+from utils.converters_tools.converters import output_conllu
+from utils.converters_tools.evaluation import get_scores
 import numpy as np
 import time
 import pickle
@@ -111,7 +113,7 @@ class Parsing_Model_Joint_Both(Basic_Model):
 #        projected_outputs = tf.map_fn(lambda x: self.add_projection(x), lstm_outputs) #[seq_len, batch_size, nb_tags]
 #        projected_outputs = tf.transpose(projected_outputs, perm=[1, 0, 2]) # [batch_size, seq_len, nb_tags]
         self.loss = self.add_loss_op(self.arc_outputs, self.inputs_placeholder_dict['arcs']) + self.add_loss_op(rel_outputs, self.inputs_placeholder_dict['rels']) + self.add_loss_op(joint_output, self.inputs_placeholder_dict['stags']) + self.add_loss_op(joint_output_jk, self.inputs_placeholder_dict['jk'])
-        #self.add_probs(joint_output)
+        self.add_probs(joint_output)
         self.predicted_arcs, self.UAS = self.add_accuracy(self.arc_outputs, self.inputs_placeholder_dict['arcs'])
         self.predicted_rels, self.rel_acc = self.add_accuracy(rel_outputs, self.inputs_placeholder_dict['rels'])
         self.predicted_stags, self.stag_acc = self.add_accuracy(joint_output, self.inputs_placeholder_dict['stags'])
@@ -140,7 +142,7 @@ class Parsing_Model_Joint_Both(Basic_Model):
             feed[self.input_keep_prob] = 1.0
             feed[self.mlp_prob] = 1.0
 #            loss, accuracy, predictions, weight = session.run([self.loss, self.accuracy, self.predictions, self.weight], feed_dict=feed)
-            loss, predicted_arcs, predicted_rels, UAS, weight, arc_outputs, rel_scores, stag_acc, predicted_stags, probs, predicted_jk = session.run([self.loss, self.predicted_arcs, self.predicted_rels, self.UAS, self.weight, self.arc_outputs, self.rel_scores, self.stag_acc, self.predicted_stags, self.probs, self.predicted_jk], feed_dict=feed)
+            loss, predicted_arcs, predicted_rels, UAS, weight, arc_outputs, rel_scores, stag_acc, predicted_stags, predicted_jk, probs = session.run([self.loss, self.predicted_arcs, self.predicted_rels, self.UAS, self.weight, self.arc_outputs, self.rel_scores, self.stag_acc, self.predicted_stags, self.predicted_jk, self.probs], feed_dict=feed)
             weight = weight.astype(bool)
             predicted_arcs_greedy = predicted_arcs[weight]
             predicted_rels_greedy = predicted_rels[weight]
@@ -193,16 +195,26 @@ class Parsing_Model_Joint_Both(Basic_Model):
             if self.test_opts is not None:
                 self.loader.output_arcs(predictions['arcs'], self.test_opts.predicted_arcs_file)
                 self.loader.output_rels(predictions['rels'], self.test_opts.predicted_rels_file)
-                self.loader.output_arcs(predictions['arcs_greedy'], self.test_opts.predicted_arcs_file_greedy)
-                self.loader.output_rels(predictions['rels_greedy'], self.test_opts.predicted_rels_file_greedy)
-                self.loader.output_stags(predictions['stags'], self.test_opts.predicted_stags_file)
-                self.loader.output_pos(predictions['jk'], self.test_opts.predicted_pos_file)
-                if self.test_opts.save_probs:
-                    self.loader.output_probs(np.vstack(probs))
+                #self.loader.output_arcs(predictions['arcs_greedy'], self.test_opts.predicted_arcs_file_greedy)
+                #self.loader.output_rels(predictions['rels_greedy'], self.test_opts.predicted_rels_file_greedy)
+                output_conllu(self.test_opts)
+                if self.test_opts.get_accuracy:
+                    scores = get_scores(self.test_opts)
+                else:
+                    scores = {} ## We don't have gold conllu to get scores.
                 if self.test_opts.get_weight:
                     stag_embeddings = session.run(self.stag_embeddings)
                     self.loader.output_weight(stag_embeddings)
-            scores = self.loader.get_scores(predictions, self.opts, self.test_opts)
+            else:
+                self.loader.output_arcs(predictions['arcs'], self.opts.predicted_arcs_file)
+                self.loader.output_rels(predictions['rels'], self.opts.predicted_rels_file)
+                #self.loader.output_arcs(predictions['arcs_greedy'], self.opts.predicted_arcs_file_greedy)
+                #self.loader.output_rels(predictions['rels_greedy'], self.opts.predicted_rels_file_greedy)
+                output_conllu(self.opts)
+                scores = get_scores(self.opts)
+            output_conllu(self.opts)
+            scores = get_scores(self.opts)
+            #scores = self.loader.get_scores(predictions, self.opts, self.test_opts)
             #scores['UAS'] = np.mean(predictions['arcs'][self.loader.punc] == self.loader.gold_arcs[self.loader.punc])
             #scores['UAS_greedy'] = np.mean(predictions['arcs_greedy'][self.loader.punc] == self.loader.gold_arcs[self.loader.punc])
             return scores

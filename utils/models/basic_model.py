@@ -292,3 +292,6 @@ class Basic_Model(object):
         word_dropout_alpha_mat = word_dropout_alpha.sample()
         embedding = embedding*tf.cast(tf.expand_dims(word_dropout_alpha_mat, -1), tf.float32)
         return embedding
+
+    def add_probs(self, output):
+        self.probs = tf.nn.softmax(output)
