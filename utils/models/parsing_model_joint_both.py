@@ -212,8 +212,6 @@ class Parsing_Model_Joint_Both(Basic_Model):
                 #self.loader.output_rels(predictions['rels_greedy'], self.opts.predicted_rels_file_greedy)
                 output_conllu(self.opts)
                 scores = get_scores(self.opts)
-            output_conllu(self.opts)
-            scores = get_scores(self.opts)
             #scores = self.loader.get_scores(predictions, self.opts, self.test_opts)
             #scores['UAS'] = np.mean(predictions['arcs'][self.loader.punc] == self.loader.gold_arcs[self.loader.punc])
             #scores['UAS_greedy'] = np.mean(predictions['arcs_greedy'][self.loader.punc] == self.loader.gold_arcs[self.loader.punc])
